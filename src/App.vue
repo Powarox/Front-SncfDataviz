@@ -78,7 +78,16 @@
 
 
 
+/* --- Footer --- */
+    #footer {
+        color: #DDD;
+        background: #555;
+        padding: 20px;
+    }
 
+    #footer p {
+        margin: 0;
+    }
 
 
 

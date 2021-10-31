@@ -16,5 +16,13 @@
 </script>
 
 <style lang="css" scoped>
+    #home {
+        height: 500px;
+        padding: 30px;
+        background: #FAE2E3;
+    }
 
+    p {
+        margin: 0;
+    }
 </style>
