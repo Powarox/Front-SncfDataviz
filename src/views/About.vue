@@ -1,6 +1,6 @@
 <template>
     <div id="about">
-        <p>Je suis du contenue</p>
+        <img src="../assets/logo.png" alt="ici">
     </div>
 </template>
 

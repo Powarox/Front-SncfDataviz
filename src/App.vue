@@ -1,7 +1,10 @@
 <template>
     <div id="app">
         <div id="nav">
-            <div>Logo</div>
+            <div>
+                Logo
+                <!-- <img src="" alt="Logo">  -->
+            </div>
             <router-link to="/">Home</router-link>
             <router-link to="/Page">Page 1</router-link>
             <router-link to="/">Page 2</router-link>
@@ -75,9 +78,6 @@
         cursor: pointer;
     }
 
-
-
-
 /* --- Footer --- */
     #footer {
         color: #DDD;
@@ -88,12 +88,4 @@
     #footer p {
         margin: 0;
     }
-
-
-
-
-
-
-
-
 </style>
