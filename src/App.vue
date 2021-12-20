@@ -5,6 +5,7 @@
         <div id="nav">
             <div>
                 Logo
+                <!-- <router-link to="/">Logo</router-link> -->
                 <!-- <img src="" alt="Logo">  -->
             </div>
             <router-link to="/">Home</router-link>
