@@ -35,8 +35,7 @@
 
 <style lang="css" scoped>
     #home {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
+        padding: 30px;
     }
 
     p {
