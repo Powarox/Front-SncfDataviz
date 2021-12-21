@@ -50,9 +50,7 @@
 
 <style lang="css" scoped>
     #Page2 {
-        height: 500px;
-        padding: 30px;
-        background: #FAE2E3;
+
     }
 
     p {

@@ -1,11 +1,17 @@
 <template>
     <div id="Page">
-        <div class="search-box">
-            <input class="search-txt" type="text" name="" placeholder="Type To Search">
-            <a class="search-btn" href="#">
-                <i class="fas fa-search"></i>
-            </a>
-        </div>
+        <section class="left">
+            <div class="search-box">
+                <input class="search-txt" type="text" name="" placeholder="Type To Search">
+                <a class="search-btn" href="#">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+        </section>
+
+        <section class="right">
+
+        </section>
     </div>
 </template>
 
@@ -17,9 +23,12 @@
 
 <style lang="css" scoped>
     #Page {
-        height: 500px;
-        padding: 30px;
-        background: #FAE2E3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #Page {
+
     }
 
     p {
@@ -36,9 +45,9 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(0%, -100%);
         background: #2f3640;
-        height: 40px;
+        height: 30px;
         border-radius: 40px;
         padding: 10px;
     }
@@ -60,7 +69,7 @@
         color: #e84118;
         float: right;
         width: 40px;
-        height: 40px;
+        height: 30px;
         border-radius: 50%;
         background: #2f3640;
         display: flex;
@@ -78,7 +87,7 @@
         color: white;
         font-size: 16px;
         transition: 0.4s;
-        line-height: 40px;
+        line-height: 30px;
         width: 0px;
         transition: 0.8s;
     }

@@ -35,9 +35,6 @@
 
 <style lang="css" scoped>
     #home {
-        height: 500px;
-        padding: 30px;
-        background: #FAE2E3;
         display: grid;
         grid-template-columns: 1fr 2fr;
     }
