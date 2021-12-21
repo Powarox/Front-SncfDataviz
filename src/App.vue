@@ -11,7 +11,6 @@
             <router-link to="/">Home</router-link>
             <router-link to="/Page">Page 1</router-link>
             <router-link to="/Page2">Page 2</router-link>
-            <router-link to="/">Page 3</router-link>
             <router-link to="/About">About</router-link>
             <!-- <router-link to="/Login">Login</router-link> -->
         </div>
