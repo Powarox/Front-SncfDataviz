@@ -1,6 +1,7 @@
 <template>
     <div id="about">
         <img src="../assets/logo.png" alt="ici">
+        <p>description du projet</p>
     </div>
 </template>
 
