@@ -84,7 +84,7 @@
 
 /* --- Main --- */
     #main {
-        height: 500px;
+        min-height: 500px;
         padding: 30px;
         background: #FAE2E3;
     }
