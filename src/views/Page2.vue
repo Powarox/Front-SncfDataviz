@@ -41,6 +41,7 @@
         },
 
         mounted () {
+            // Get bitcoin price
             axios
                 .get('https://api.coindesk.com/v1/bpi/currentprice.json')
                 .then(response => {
@@ -53,6 +54,7 @@
                 })
                 .finally(() => this.loading = false),
 
+            // Get worksite list
             axios
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-chantiers&q=&rows=5')
                 .then(response => {
