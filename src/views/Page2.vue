@@ -3,6 +3,7 @@
         <a href="https://www.datavis.fr/index.php?page=map-hexgrid" target="_blank">Carte hexa ville</a><br>
         <a href="https://www.datavis.fr/index.php?page=map-firststep" target="_blank">Carte régions</a><br>
         <a href="https://www.datavis.fr/index.php?page=map-population" target="_blank">Carte régions couleur</a>
+        <a href="https://www.d3-graph-gallery.com/" target="_blank">Carte régions couleur</a>
 
         <br><br>
 
