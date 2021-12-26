@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <!-- Load d3.js -->
+        <script src="https://d3js.org/d3.v6.js"></script>
+
+        <!-- Create an element where the map will take place -->
+        <svg id="my_dataviz" width="440" height="300"></svg>
+
+        <script>
+            // The svg
+            const svg = d3.select("svg"),
+                width = +svg.attr("width"),
+                height = +svg.attr("height");
+
+            // Map and projection
+            const projection = d3.geoMercator()
+                .scale(350) // This is the zoom
+                .translate([850, 440]); // You have to play with these values to center your map
+
+            // Load external data and boot
+            d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/us_states_hexgrid.geojson.json").then(function(data){
+
+            // Draw the map
+            svg.append("g")
+                .selectAll("path")
+                .data(data.features)
+                .join("path")
+                .attr("fill", "#69a2a2")
+                .attr("d", d3.geoPath()
+                    .projection(projection)
+                )
+                .attr("stroke", "black")
+            })
+        </script>
+    </body>
+</html>
