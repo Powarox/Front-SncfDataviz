@@ -11,12 +11,13 @@
             <router-link to="/">Home</router-link>
             <router-link to="/Page">Page 1</router-link>
             <router-link to="/Page2">Page 2</router-link>
-            <router-link to="/">Page 3</router-link>
             <router-link to="/About">About</router-link>
             <!-- <router-link to="/Login">Login</router-link> -->
         </div>
 
-        <router-view/>
+        <div id="main">
+            <router-view/>
+        </div>
 
         <div id="footer">
             <p>Moriniere Robin 21606393</p>
@@ -79,6 +80,13 @@
         padding: 17px;
         border-radius: 5px;
         cursor: pointer;
+    }
+
+/* --- Main --- */
+    #main {
+        min-height: 500px;
+        padding: 30px;
+        background: #FAE2E3;
     }
 
 /* --- Footer --- */

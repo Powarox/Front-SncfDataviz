@@ -16,9 +16,7 @@
 
 <style lang="css" scoped>
     #about {
-        height: 500px;
-        padding: 30px;
-        background: #FAE2E3;
+
     }
 
     p {

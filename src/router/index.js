@@ -53,8 +53,8 @@ const router = createRouter({
     routes
 });
 
-router.afterEach((to, from) => {
-    console.log(from, to);
+router.afterEach((to) => {  // (to, from)
+    // console.log(from, to);
     document.title = to.meta.title;
 })
 

@@ -35,9 +35,6 @@
 
 <style lang="css" scoped>
     #home {
-        height: 500px;
-        padding: 30px;
-        background: #FAE2E3;
         display: grid;
         grid-template-columns: 1fr 2fr;
     }
@@ -49,5 +46,9 @@
     section {
         display: grid;
         grid-template-columns: 1fr 1fr;
+    }
+
+    section div {
+        margin: 5px;
     }
 </style>

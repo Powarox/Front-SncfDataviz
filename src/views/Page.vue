@@ -1,11 +1,63 @@
 <template>
     <div id="Page">
-        <div class="search-box">
-            <input class="search-txt" type="text" name="" placeholder="Type To Search">
-            <a class="search-btn" href="#">
-                <i class="fas fa-search"></i>
-            </a>
-        </div>
+        <section class="left">
+            <!-- <div class="search-box">
+                <input class="search-txt" type="text" name="" placeholder="Type To Search">
+                <a class="search-btn" href="#">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div> -->
+
+            <h2>Search _____________________ Q</h2>
+
+            <img src="../assets/img.png" alt="ici">
+        </section>
+
+        <section class="right">
+            <h3>Description title</h3>
+
+            <div class="text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+            <div class="list">
+                <li>Une peu de text ici</li>
+                <li>Une peu de text ici</li>
+                <li>Une peu de text ici</li>
+
+                <li>Une peu de text ici</li>
+                <li>Une peu de text ici</li>
+                <li>Une peu de text ici</li>
+            </div>
+
+            <div class="text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+
+            <div class="tab">
+                <table>
+                    <thead>
+                       <tr>
+                           <th colspan="2">The table header</th>
+                       </tr>
+                   </thead>
+                    <tbody>
+                        <tr>
+                            <td>un test</td>
+                            <td>deux test</td>
+                        </tr>
+                        <tr>
+                            <td>un test</td>
+                            <td>deux test</td>
+                        </tr>
+                        <tr>
+                            <td>un test</td>
+                            <td>deux test</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -17,17 +69,51 @@
 
 <style lang="css" scoped>
     #Page {
-        height: 500px;
-        padding: 30px;
-        background: #FAE2E3;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
-    p {
-        margin: 0;
+    .left {
+        padding: 15px;
     }
 
-    a {
-        text-decoration: none;
+    .left img {
+        width: 100%;
+    }
+
+    .right {
+        padding: 15px;
+        padding-top: 50px;
+    }
+
+    .right .list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .right .text p {
+        text-indent: 2em;
+        text-align: justify;
+    }
+
+    .right .tab {
+        /* padding-top: 30px; */
+    }
+
+    table {
+        width: 100%;
+        border: 1px solid #333;
+    }
+
+    td {
+        width: 50%;
+        height: 30px;
+        border: 1px solid #333;
+    }
+
+    thead {
+        background-color: #333;
+        color: #fff;
     }
 
 
@@ -36,9 +122,9 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(0%, -100%);
         background: #2f3640;
-        height: 40px;
+        height: 30px;
         border-radius: 40px;
         padding: 10px;
     }
@@ -60,9 +146,10 @@
         color: #e84118;
         float: right;
         width: 40px;
-        height: 40px;
+        height: 30px;
         border-radius: 50%;
         background: #2f3640;
+        text-decoration: none;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -78,7 +165,7 @@
         color: white;
         font-size: 16px;
         transition: 0.4s;
-        line-height: 40px;
+        line-height: 30px;
         width: 0px;
         transition: 0.8s;
     }

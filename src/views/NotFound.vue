@@ -12,12 +12,6 @@
 
 <style lang="css" scoped>
     #notFound {
-        height: 500px;
-        padding: 30px;
-        background: #FAE2E3;
-    }
-
-    #notFound {
         display: grid;
         justify-content: space-around;
         align-content: space-around;
