@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import About from '../views/About.vue';
 import Page from '../views/Page.vue';
 import Page2 from '../views/Page2.vue';
+import Page3 from '../views/Page3.vue';
 import NotFound from '../views/NotFound.vue';
 
 const routes = [
@@ -36,6 +37,14 @@ const routes = [
         component: Page2,
         meta: {
             title: 'Page 2',
+        }
+    },
+    {
+        path: '/Page3',
+        name: 'Page3',
+        component: Page3,
+        meta: {
+            title: 'Page 3',
         }
     },
     {
