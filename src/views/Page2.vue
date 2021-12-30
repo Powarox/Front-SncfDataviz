@@ -20,13 +20,13 @@
                 errored: false,
 
                 data1: {},
-                data2 : {},
+                data2: {},
             }
         },
 
         methods: {
             test(){
-                let result = {};
+                let result = [];
                 let count = 0;
                 let tmp = '';
 
@@ -39,12 +39,16 @@
                     }
                     else {
                         if(tmp !== ''){
-                            result[tmp] = count;
+                            result.push({
+                                'date': tmp,
+                                'journees_perdues': count
+                            });
                         }
                         count = this.data1[i]['journees_perdues'];
                         tmp = spl[0];
                     }
                 }
+                this.data1 = result;
                 console.log(result);
             }
         },
