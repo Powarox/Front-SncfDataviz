@@ -1,4 +1,4 @@
-journees_perdues<!DOCTYPE html>
+<!DOCTYPE html>
 <meta charset="utf-8">
 
 <head>
@@ -68,7 +68,7 @@ d3.json("data.json", function(error, data) {
 
     data.forEach(function(d) {
         d.date = d.date;
-        d.journees_perdues = +d.journees_perdues;
+        d.journees_perdues = d.journees_perdues;
     });
 
   // scale the range of the data
@@ -89,12 +89,12 @@ d3.json("data.json", function(error, data) {
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 5)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("journees_perdues");
+    // .append("text")
+      // .attr("transform", "rotate(-90)")
+      // .attr("y", 5)
+      // .attr("dy", ".71em")
+      // .style("text-anchor", "end")
+      // .text("journees_perdues");
 
 
   // Add bar chart
