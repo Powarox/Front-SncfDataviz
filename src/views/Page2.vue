@@ -3,7 +3,9 @@
         <section class='test'>
             <div v-if="loading">Chargement...</div>
             <button @click="test()">test</button>
-            <p>{{ this.data1 }}</p>
+            <!-- <p>{{ this.data1 }}</p> -->
+            <p>{{ this.data2 }}</p>
+            <!-- <p>{{ this.data3 }}</p> -->
         </section>
     </div>
 </template>
@@ -19,8 +21,9 @@
                 loading: true,
                 errored: false,
 
-                data1: {},
-                data2: {},
+                data1: [],
+                data2: [],
+                data3: {},
             }
         },
 
@@ -55,18 +58,62 @@
 
         mounted () {
             // Get Mouvement sociaux
+            // axios
+            //     .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
+            //     .then(response => {
+            //         let results = response.data.records;
+            //         let newTab = {};
+            //
+            //         for(let res in results){
+            //             newTab[res] = results[res].fields;
+            //         }
+            //         this.data1 = newTab;
+            //     })
+            //     .catch(error => {
+            //         console.log(error)
+            //         this.errored = true
+            //     })
+            //     .finally(() => this.loading = false)
+
+            // Get worksite list
             axios
-                .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-chantiers&q=&rows=10')
                 .then(response => {
                     let results = response.data.records;
-                    let newTab = {};
+                    let resTab = [];
 
                     for(let res in results){
-                        newTab[res] = results[res].fields;
+                        resTab.push({
+                            'gare': results[res].fields.gare,
+                            'libelle': results[res].fields.libelle,
+                            'lattitude': results[res].fields.geo_point_2d[0],
+                            'longitude': results[res].fields.geo_point_2d[1],
+                        })
                     }
-                    this.data1 = newTab;
-                    // console.log(newTab);
+                    this.data2 = resTab;
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                })
+                .finally(() => this.loading = false)
 
+            // Get subway station list
+            axios
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-gares&q=&rows=10')
+                .then(response => {
+                    let results = response.data.records;
+                    let resTab = [];
+
+                    for(let res in results){
+                        resTab.push({
+                            'gare': results[res].fields.gare,
+                            'libelle': results[res].fields.libelle,
+                            'lattitude': results[res].fields.geo_point_2d[0],
+                            'longitude': results[res].fields.geo_point_2d[1],
+                        })
+                    }
+                    this.data2 = resTab;
                 })
                 .catch(error => {
                     console.log(error)
@@ -153,7 +200,7 @@
             //                 tmp = date;
             //             }
             //         }
-            //         this.data2 = newTab;
+            //         this.data3 = newTab;
             //         // console.log(newTab);
             //     })
             //     .catch(error => {
