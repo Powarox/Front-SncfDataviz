@@ -1,0 +1,13 @@
+{
+    "0": { "journees_perdues": 7391.38, "date": "2020-09" },
+    "1": { "journees_perdues": 123.88, "date": "2020-08" },
+    "2": { "journees_perdues": 117.25, "date": "2020-07" },
+    "3": { "journees_perdues": 69.25, "date": "2020-06" },
+    "4": { "journees_perdues": 92.5, "date": "2020-05" },
+    "5": { "journees_perdues": 4, "date": "2020-04" },
+    "6": { "journees_perdues": 645.88, "date": "2020-03" },
+    "7": { "journees_perdues": 15104.38, "date": "2020-02" },
+    "8": { "journees_perdues": 158241.38, "date": "2020-01" },
+    "9": { "journees_perdues": 327141, "date": "2019-12" },
+    "10": { "journees_perdues": 2407.25, "date": "2019-11" }
+}
