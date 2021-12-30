@@ -49,18 +49,105 @@
 
         mounted () {
             // Get Mouvement sociaux
+            // axios
+            //     .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
+            //     .then(response => {
+            //         let results = response.data.records;
+            //         let newTab = {};
+            //
+            //         for(let res in results){
+            //             newTab[res] = results[res].fields;
+            //         }
+            //         this.data = newTab;
+            //         // console.log(newTab);
+            //
+            //     })
+            //     .catch(error => {
+            //         console.log(error)
+            //         this.errored = true
+            //     })
+            //     .finally(() => this.loading = false)
+
+            // Get Retard train
             axios
-                .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
                 .then(response => {
                     let results = response.data.records;
                     let newTab = {};
+                    let tmp = '';
+
+                    let duree_moyenne = 0;
+                    let nb_annulation = 0;
+                    let nb_train_prevu = 0;
+
+                    let nb_train_retard_depart = 0;
+                    let nb_train_retard_arrivee = 0;
+                    let nb_train_retard_sup_15 = 0;
+                    let nb_train_retard_sup_30 = 0;
+                    let nb_train_retard_sup_60 = 0;
+
+                    let retard_moyen_arrivee = 0;
+                    let retard_moyen_depart = 0;
+                    let retard_moyen_tous_trains_arrivee = 0;
+                    let retard_moyen_tous_trains_depart = 0;
+                    let retard_moyen_trains_retard_sup15 = 0;
 
                     for(let res in results){
-                        newTab[res] = results[res].fields;
-                    }
-                    this.data = newTab;
-                    // console.log(newTab);
+                        let date = results[res].fields.date;
+                        if(tmp === date){
+                            duree_moyenne += results[res].fields.duree_moyenne;
+                            nb_annulation += results[res].fields.nb_annulation;
+                            nb_train_prevu += results[res].fields.nb_train_prevu;
 
+                            nb_train_retard_depart += results[res].fields.nb_train_depart_retard;
+                            nb_train_retard_arrivee += results[res].fields.nb_train_retard_arrivee;
+                            nb_train_retard_sup_15 += results[res].fields.nb_train_retard_sup_15;
+                            nb_train_retard_sup_30 += results[res].fields.nb_train_retard_sup_30;
+                            nb_train_retard_sup_60 += results[res].fields.nb_train_retard_sup_60;
+
+                            retard_moyen_arrivee += results[res].fields.retard_moyen_arrivee;
+                            retard_moyen_depart += results[res].fields.retard_moyen_depart;
+                            retard_moyen_tous_trains_arrivee += results[res].fields.retard_moyen_tous_trains_arrivee;
+                            retard_moyen_tous_trains_depart += results[res].fields.retard_moyen_tous_trains_depart;
+                            retard_moyen_trains_retard_sup15 += results[res].fields.retard_moyen_trains_retard_sup15;
+                        }
+                        else {
+                            if(tmp !== ''){
+                                newTab[tmp] = {
+                                    'duree_moyenne' : duree_moyenne,
+                                    'nb_annulation' : nb_annulation,
+                                    'nb_train_prevu' : nb_train_prevu,
+                                    'nb_train_retard_depart' : nb_train_retard_depart,
+                                    'nb_train_retard_arrivee' : nb_train_retard_arrivee,
+                                    'nb_train_retard_sup_15' : nb_train_retard_sup_15,
+                                    'nb_train_retard_sup_30' : nb_train_retard_sup_30,
+                                    'nb_train_retard_sup_60' : nb_train_retard_sup_60,
+                                    'retard_moyen_arrivee' : retard_moyen_arrivee,
+                                    'retard_moyen_depart' : retard_moyen_depart,
+                                    'retard_moyen_tous_trains_arrivee' : retard_moyen_tous_trains_arrivee,
+                                    'retard_moyen_tous_trains_depart' : retard_moyen_tous_trains_depart,
+                                    'retard_moyen_trains_retard_sup15' : retard_moyen_trains_retard_sup15,
+                                }
+                            }
+                            duree_moyenne = results[res].fields.duree_moyenne;
+                            nb_annulation = results[res].fields.nb_annulation;
+                            nb_train_prevu = results[res].fields.nb_train_prevu;
+
+                            nb_train_retard_depart = results[res].fields.nb_train_depart_retard;
+                            nb_train_retard_arrivee = results[res].fields.nb_train_retard_arrivee;
+                            nb_train_retard_sup_15 = results[res].fields.nb_train_retard_sup_15;
+                            nb_train_retard_sup_30 = results[res].fields.nb_train_retard_sup_30;
+                            nb_train_retard_sup_60 = results[res].fields.nb_train_retard_sup_60;
+
+                            retard_moyen_arrivee = results[res].fields.retard_moyen_arrivee;
+                            retard_moyen_depart = results[res].fields.retard_moyen_depart;
+                            retard_moyen_tous_trains_arrivee = results[res].fields.retard_moyen_tous_trains_arrivee;
+                            retard_moyen_tous_trains_depart = results[res].fields.retard_moyen_tous_trains_depart;
+                            retard_moyen_trains_retard_sup15 = results[res].fields.retard_moyen_trains_retard_sup15;
+                            tmp = date;
+                        }
+                    }
+                    console.log(newTab);
                 })
                 .catch(error => {
                     console.log(error)
