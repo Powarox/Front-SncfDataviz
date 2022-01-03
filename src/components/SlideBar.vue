@@ -1,5 +1,5 @@
 <template>
-    <div id="slideBar">
+    <div id="slide_bar">
         <h1>Filter</h1>
 
         <section class="btn">
@@ -7,7 +7,6 @@
             <button type="button" name="button">Technicien</button>
             <button type="button" name="button">Ouvrier</button>
             <button type="button" name="button">Agent</button>
-
             <button type="button" name="button">2021</button>
             <button type="button" name="button">2020</button>
             <button type="button" name="button">2019</button>
@@ -25,13 +24,20 @@
 </script>
 
 <style lang="css" scoped>
+    #slide_bar {
+         /* background: linear-gradient(45deg, #e66465, #9198e5); */
+    }
+
     h1 {
         border-bottom: 2px solid #2c3e50;
         margin-right: 40px;
     }
 
     .btn {
-        display:
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0 5%;
+        /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) */
     }
 
     .btn button {

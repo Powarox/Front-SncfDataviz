@@ -2,27 +2,40 @@
     <div id="home">
         <slidebar/>
 
-        <section>
-            <div class="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
-            </div>
+        <section class="content">
+            <section class="elem" id="elem1">
+                <h2>Un element Titre ici</h2>
+                <h2>Un element Titre ici</h2>
+            </section>
 
-            <div class="">
+            <section class="elem" id="elem2">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
-            </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
+            </section>
 
-            <div class="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
-            </div>
-
-            <div class="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
-            </div>
+            <section class="elem" id="elem3">
+                <div class="">
+                    <h4>Nombre total des retards depuis 2018</h4>
+                    <li>Train : {{ this.global_train }}</li>
+                    <li>Train annulé : {{ this.global_annulation }}</li>
+                    <li>Train en retard au depart : {{ this.nb_ret_dep }}</li>
+                    <li>Train en retard à l'arrivée: {{ this.nb_ret_arr }}</li>
+                    <li>Train avec un retard supérieur à 15min : {{ this.nb_ret_s15 }}</li>
+                    <li>Train avec un retard supérieur à 30min : {{ this.nb_ret_s30 }}</li>
+                    <li>Train avec un retard supérieur à 60min : {{ this.nb_ret_s60 }}</li>
+                </div>
+                <div id="graphs">
+                    <p>un graph ici</p>
+                </div>
+                <button @click="GlobalTrainLate()">function</button>
+                <div v-if="loading">Chargement ... Mouvement sociaux</div>
+            </section>
         </section>
     </div>
 </template>
 
 <script>
+    import axios from "axios";
     import Slidebar from "../components/SlideBar.vue";
 
     export default {
@@ -30,6 +43,127 @@
         components: {
             Slidebar
         },
+        data() {
+            return {
+                info: null,
+                errored: false,
+                loading: true,
+                data: [],
+
+                global_train: 0,
+                global_annulation: 0,
+                nb_ret_dep: 0,
+                nb_ret_arr: 0,
+                nb_ret_s15: 0,
+                nb_ret_s30: 0,
+                nb_ret_s60: 0,
+            }
+        },
+        methods: {
+            GlobalTrainLate(){
+                for(let res in this.data){
+                    this.global_train += this.data[res]['nb_train_prevu'];
+                    this.global_annulation += this.data[res]['nb_annulation'];
+                    this.nb_ret_dep += this.data[res]['nb_train_retard_depart'];
+                    this.nb_ret_arr += this.data[res]['nb_train_retard_arrivee'];
+                    this.nb_ret_s15 += this.data[res]['nb_train_retard_sup_15'];
+                    this.nb_ret_s30 += this.data[res]['nb_train_retard_sup_30'];
+                    this.nb_ret_s60 += this.data[res]['nb_train_retard_sup_60'];
+                }
+            }
+        },
+        mounted() {
+            axios
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
+                .then(response => {
+                    let results = response.data.records;
+                    let newTab = {};
+                    let count = 0;
+                    let tmp = '';
+
+                    let duree_moyenne = 0;
+                    let nb_annulation = 0;
+                    let nb_train_prevu = 0;
+
+                    let nb_train_retard_depart = 0;
+                    let nb_train_retard_arrivee = 0;
+                    let nb_train_retard_sup_15 = 0;
+                    let nb_train_retard_sup_30 = 0;
+                    let nb_train_retard_sup_60 = 0;
+
+                    let retard_moyen_arrivee = 0;
+                    let retard_moyen_depart = 0;
+                    let retard_moyen_tous_trains_arrivee = 0;
+                    let retard_moyen_tous_trains_depart = 0;
+                    let retard_moyen_trains_retard_sup15 = 0;
+
+                    for(let res in results){
+                        let date = results[res].fields.date;
+                        if(tmp === date){
+                            count += 1;
+                            duree_moyenne += results[res].fields.duree_moyenne;
+                            nb_annulation += results[res].fields.nb_annulation;
+                            nb_train_prevu += results[res].fields.nb_train_prevu;
+
+                            nb_train_retard_depart += results[res].fields.nb_train_depart_retard;
+                            nb_train_retard_arrivee += results[res].fields.nb_train_retard_arrivee;
+                            nb_train_retard_sup_15 += results[res].fields.nb_train_retard_sup_15;
+                            nb_train_retard_sup_30 += results[res].fields.nb_train_retard_sup_30;
+                            nb_train_retard_sup_60 += results[res].fields.nb_train_retard_sup_60;
+
+                            retard_moyen_arrivee += results[res].fields.retard_moyen_arrivee;
+                            retard_moyen_depart += results[res].fields.retard_moyen_depart;
+                            retard_moyen_tous_trains_arrivee += results[res].fields.retard_moyen_tous_trains_arrivee;
+                            retard_moyen_tous_trains_depart += results[res].fields.retard_moyen_tous_trains_depart;
+                            retard_moyen_trains_retard_sup15 += results[res].fields.retard_moyen_trains_retard_sup15;
+                        }
+                        else {
+                            if(tmp !== ''){
+                                newTab[tmp] = {
+                                    'duree_moyenne' : duree_moyenne,
+                                    'nb_annulation' : nb_annulation,
+                                    'nb_train_prevu' : nb_train_prevu,
+                                    'nb_train_retard_depart' : nb_train_retard_depart,
+                                    'nb_train_retard_arrivee' : nb_train_retard_arrivee,
+                                    'nb_train_retard_sup_15' : nb_train_retard_sup_15,
+                                    'nb_train_retard_sup_30' : nb_train_retard_sup_30,
+                                    'nb_train_retard_sup_60' : nb_train_retard_sup_60,
+                                    'retard_moyen_arrivee' : (retard_moyen_arrivee / count),
+                                    'retard_moyen_depart' : (retard_moyen_depart / count),
+                                    'retard_moyen_tous_trains_arrivee' : (retard_moyen_tous_trains_arrivee / count),
+                                    'retard_moyen_tous_trains_depart' : (retard_moyen_tous_trains_depart / count),
+                                    'retard_moyen_trains_retard_sup15' : (retard_moyen_trains_retard_sup15 / count),
+                                }
+                                count = 0;
+                            }
+                            duree_moyenne = results[res].fields.duree_moyenne;
+                            nb_annulation = results[res].fields.nb_annulation;
+                            nb_train_prevu = results[res].fields.nb_train_prevu;
+
+                            nb_train_retard_depart = results[res].fields.nb_train_depart_retard;
+                            nb_train_retard_arrivee = results[res].fields.nb_train_retard_arrivee;
+                            nb_train_retard_sup_15 = results[res].fields.nb_train_retard_sup_15;
+                            nb_train_retard_sup_30 = results[res].fields.nb_train_retard_sup_30;
+                            nb_train_retard_sup_60 = results[res].fields.nb_train_retard_sup_60;
+
+                            retard_moyen_arrivee = results[res].fields.retard_moyen_arrivee;
+                            retard_moyen_depart = results[res].fields.retard_moyen_depart;
+                            retard_moyen_tous_trains_arrivee = results[res].fields.retard_moyen_tous_trains_arrivee;
+                            retard_moyen_tous_trains_depart = results[res].fields.retard_moyen_tous_trains_depart;
+                            retard_moyen_trains_retard_sup15 = results[res].fields.retard_moyen_trains_retard_sup15;
+                            tmp = date;
+                            count += 1;
+                        }
+                    }
+                    this.data = newTab;
+                    // console.log(newTab);
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                })
+                .finally(() => this.loading = false)
+        }
     }
 </script>
 
@@ -37,15 +171,31 @@
     #home {
         display: grid;
         grid-template-columns: 1fr 2fr;
+        grid-gap: 10px;
+        padding: 5px;
     }
 
     p {
         margin: 0;
     }
 
-    section {
+    .content {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .elem {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-gap: 20px;
+        margin: 15px 0;
+    }
+
+
+    #graphs {
+        width: 200px;
+        height: 150px;
+        background: #e66465;
     }
 
     section div {
