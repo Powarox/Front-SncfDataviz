@@ -25,7 +25,8 @@
 
 <style lang="css" scoped>
     #slide_bar {
-         /* background: linear-gradient(45deg, #e66465, #9198e5); */
+        border-right: 2px solid #2c3e50;
+        /* background: linear-gradient(45deg, #e66465, #9198e5); */
     }
 
     h1 {

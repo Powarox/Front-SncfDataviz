@@ -10,25 +10,42 @@
 
             <section class="elem" id="elem2">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
+                <div id="graphs">
+                    <p>un graph ici</p>
+                </div>
+            </section>
+
+            <section class="elem" id="elem1">
+                <h2>Un element Titre ici</h2>
+                <h2>Un element Titre ici</h2>
+            </section>
+
+            <section class="elem" id="elem2">
+                <div id="graphs">
+                    <p>un graph ici</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
+            </section>
+
+            <section class="elem" id="elem1">
+                <h2>Un element Titre ici</h2>
+                <h2>Un element Titre ici</h2>
             </section>
 
             <section class="elem" id="elem3">
                 <div class="">
                     <h4>Nombre total des retards depuis 2018</h4>
-                    <li>Train : {{ this.global_train }}</li>
-                    <li>Train annulé : {{ this.global_annulation }}</li>
-                    <li>Train en retard au depart : {{ this.nb_ret_dep }}</li>
-                    <li>Train en retard à l'arrivée: {{ this.nb_ret_arr }}</li>
-                    <li>Train avec un retard supérieur à 15min : {{ this.nb_ret_s15 }}</li>
-                    <li>Train avec un retard supérieur à 30min : {{ this.nb_ret_s30 }}</li>
-                    <li>Train avec un retard supérieur à 60min : {{ this.nb_ret_s60 }}</li>
+                    <li>Train : {{ this.global_train.toLocaleString('fr-FR') }}</li>
+                    <li>Train annulé : {{ this.global_annulation.toLocaleString('fr-FR') }}</li>
+                    <li>Train en retard au depart : {{ this.nb_ret_dep.toLocaleString('fr-FR') }}</li>
+                    <li>Train en retard à l'arrivée: {{ this.nb_ret_arr.toLocaleString('fr-FR') }}</li>
+                    <li>Train avec un retard supérieur à 15min : {{ this.nb_ret_s15.toLocaleString('fr-FR') }}</li>
+                    <li>Train avec un retard supérieur à 30min : {{ this.nb_ret_s30.toLocaleString('fr-FR') }}</li>
+                    <li>Train avec un retard supérieur à 60min : {{ this.nb_ret_s60.toLocaleString('fr-FR') }}</li>
                 </div>
                 <div id="graphs">
                     <p>un graph ici</p>
                 </div>
-                <button @click="GlobalTrainLate()">function</button>
-                <div v-if="loading">Chargement ... Mouvement sociaux</div>
             </section>
         </section>
     </div>
@@ -156,6 +173,7 @@
                         }
                     }
                     this.data = newTab;
+                    this.GlobalTrainLate();
                     // console.log(newTab);
                 })
                 .catch(error => {
@@ -177,25 +195,31 @@
 
     p {
         margin: 0;
+        text-indent: 2em;
+        text-align: justify;
     }
 
     .content {
         display: grid;
         grid-template-columns: 1fr;
+        grid-gap: 15px;
     }
 
     .elem {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
-        margin: 15px 0;
+        grid-gap: 3%;
+        align-items: center;
+        justify-items: center;
+        padding: 0 2%;
     }
 
-
     #graphs {
-        width: 200px;
-        height: 150px;
-        background: #e66465;
+        width: 100%;
+        height: 175px;
+        text-align: center;
+        border-radius: 20px;
+        background: #FFF;
     }
 
     section div {
