@@ -49,11 +49,14 @@
             </section>
         </section>
     </div>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
 </template>
 
 <script>
     import axios from "axios";
     import Slidebar from "../components/SlideBar.vue";
+    import drawSecteurGraph from "../graph/sectors/DrawSectorGraph.js";
 
     export default {
         name: 'Home',
@@ -87,6 +90,12 @@
                     this.nb_ret_s30 += this.data[res]['nb_train_retard_sup_30'];
                     this.nb_ret_s60 += this.data[res]['nb_train_retard_sup_60'];
                 }
+            },
+            test(){
+                let name = ["A l'heure", "Annulé", "Retard 15 min", "Retard 30 min", "Retard 60 min"];
+                let value = [3000, this.global_annulation, this.nb_ret_s15, this.nb_ret_s30, this.nb_ret_s60];
+                let className = '.graphs';
+                drawSecteurGraph(name, value, className);
             }
         },
         mounted() {
@@ -95,7 +104,6 @@
                 .then(response => {
                     let results = response.data.records;
                     let newTab = {};
-                    let count = 0;
                     let tmp = '';
 
                     let duree_moyenne = 0;
@@ -117,7 +125,6 @@
                     for(let res in results){
                         let date = results[res].fields.date;
                         if(tmp === date){
-                            count += 1;
                             duree_moyenne += results[res].fields.duree_moyenne;
                             nb_annulation += results[res].fields.nb_annulation;
                             nb_train_prevu += results[res].fields.nb_train_prevu;
@@ -145,13 +152,12 @@
                                     'nb_train_retard_sup_15' : nb_train_retard_sup_15,
                                     'nb_train_retard_sup_30' : nb_train_retard_sup_30,
                                     'nb_train_retard_sup_60' : nb_train_retard_sup_60,
-                                    'retard_moyen_arrivee' : (retard_moyen_arrivee / count),
-                                    'retard_moyen_depart' : (retard_moyen_depart / count),
-                                    'retard_moyen_tous_trains_arrivee' : (retard_moyen_tous_trains_arrivee / count),
-                                    'retard_moyen_tous_trains_depart' : (retard_moyen_tous_trains_depart / count),
-                                    'retard_moyen_trains_retard_sup15' : (retard_moyen_trains_retard_sup15 / count),
+                                    'retard_moyen_arrivee' : retard_moyen_arrivee,
+                                    'retard_moyen_depart' : retard_moyen_depart,
+                                    'retard_moyen_tous_trains_arrivee' : retard_moyen_tous_trains_arrivee,
+                                    'retard_moyen_tous_trains_depart' : retard_moyen_tous_trains_depart,
+                                    'retard_moyen_trains_retard_sup15' : retard_moyen_trains_retard_sup15,
                                 }
-                                count = 0;
                             }
                             duree_moyenne = results[res].fields.duree_moyenne;
                             nb_annulation = results[res].fields.nb_annulation;
@@ -169,7 +175,6 @@
                             retard_moyen_tous_trains_depart = results[res].fields.retard_moyen_tous_trains_depart;
                             retard_moyen_trains_retard_sup15 = results[res].fields.retard_moyen_trains_retard_sup15;
                             tmp = date;
-                            count += 1;
                         }
                     }
                     this.data = newTab;
