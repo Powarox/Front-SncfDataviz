@@ -1,29 +1,14 @@
 <template>
     <div id="Page2">
-        <a href="https://www.datavis.fr/index.php?page=map-hexgrid" target="_blank">Carte hexa ville</a><br>
-        <a href="https://www.datavis.fr/index.php?page=map-firststep" target="_blank">Carte régions</a><br>
-        <a href="https://www.datavis.fr/index.php?page=map-population" target="_blank">Carte régions couleur</a><br>
-        <a href="https://www.d3-graph-gallery.com/" target="_blank">Gallery D3JS</a>
-
-        <br><br>
-
-        <section v-if="errored">
-            <p>Nous sommes désolés, nous ne sommes pas en mesure de récupérer ces informations pour le moment. Veuillez réessayer ultérieurement.</p>
-        </section>
-
-        <section v-else>
-            <div v-if="loading">Chargement...</div>
-
-            <div v-else v-for="currency in info" :key="currency" class="currency">
-                {{ currency.description }}:
-                {{ currency.rate_float }}
-            </div>
-        </section>
-
-        <br><br>
-
         <section class='test'>
-
+            <div v-if="loading1">Chargement ... Mouvement sociaux</div>
+            <div v-if="loading2">Chargement ... Liste des gares</div>
+            <div v-if="loading3">Chargement ... Liste des chatiers</div>
+            <div v-if="loading4">Chargement ... Regularité Mensuelle</div>
+            <button @click="test()">test</button>
+            <!-- <p>{{ this.data1 }}</p> -->
+            <!-- <p>{{ this.data2 }}</p> -->
+            <!-- <p>{{ this.data3 }}</p> -->
         </section>
     </div>
 </template>
@@ -36,37 +21,203 @@
         data() {
             return {
                 info: null,
-                loading: true,
-                errored: false
+                errored: false,
+
+                loading1: true,
+                loading2: true,
+                loading3: true,
+                loading4: true,
+
+                data1: [],
+                data2: [],
+                data3: [],
+                data4: {},
+            }
+        },
+
+        methods: {
+            test(){
+                let result = [];
+                let count = 0;
+                let tmp = '';
+
+                for(let i in this.data1){
+                    let date = this.data1[i]['date'];
+                    let spl = date.split('-');
+
+                    if(tmp === spl[0]){
+                        count += this.data1[i]['journees_perdues'];
+                    }
+                    else {
+                        if(tmp !== ''){
+                            result.push({
+                                'date': tmp,
+                                'journees_perdues': count
+                            });
+                        }
+                        count = this.data1[i]['journees_perdues'];
+                        tmp = spl[0];
+                    }
+                }
+                this.data1 = result;
+                console.log(result);
             }
         },
 
         mounted () {
-            // Get bitcoin price
+            // Get Mouvement sociaux
             axios
-                .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
                 .then(response => {
-                    this.info = response.data.bpi
-                    // console.log(this.info);
+                    let results = response.data.records;
+                    let newTab = {};
+
+                    for(let res in results){
+                        newTab[res] = results[res].fields;
+                    }
+                    this.data1 = newTab;
                 })
                 .catch(error => {
                     console.log(error)
                     this.errored = true
                 })
-                .finally(() => this.loading = false),
+                .finally(() => this.loading1 = false)
 
             // Get worksite list
             axios
-                .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-chantiers&q=&rows=5')
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-chantiers&q=&rows=10')
                 .then(response => {
-                    console.log(response.data.records);
+                    let results = response.data.records;
+                    let resTab = [];
 
+                    for(let res in results){
+                        resTab.push({
+                            'gare': results[res].fields.gare,
+                            'libelle': results[res].fields.libelle,
+                            'lattitude': results[res].fields.geo_point_2d[0],
+                            'longitude': results[res].fields.geo_point_2d[1],
+                        })
+                    }
+                    this.data2 = resTab;
                 })
                 .catch(error => {
                     console.log(error)
                     this.errored = true
                 })
-                .finally(() => this.loading = false)
+                .finally(() => this.loading2 = false)
+
+            // Get subway station list
+            axios
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-gares&q=&rows=10')
+                .then(response => {
+                    let results = response.data.records;
+                    let resTab = [];
+
+                    for(let res in results){
+                        resTab.push({
+                            'gare': results[res].fields.libelle,
+                            'commune': results[res].fields.commune,
+                            'departement': results[res].fields.departemen,
+                            'lattitude': results[res].fields.geo_point_2d[0],
+                            'longitude': results[res].fields.geo_point_2d[1],
+                        })
+                    }
+                    console.log(resTab);
+                    this.data3 = resTab;
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                })
+                .finally(() => this.loading3 = false)
+
+            // Get Retard train
+            axios
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
+                .then(response => {
+                    let results = response.data.records;
+                    let newTab = {};
+                    let tmp = '';
+
+                    let duree_moyenne = 0;
+                    let nb_annulation = 0;
+                    let nb_train_prevu = 0;
+
+                    let nb_train_retard_depart = 0;
+                    let nb_train_retard_arrivee = 0;
+                    let nb_train_retard_sup_15 = 0;
+                    let nb_train_retard_sup_30 = 0;
+                    let nb_train_retard_sup_60 = 0;
+
+                    let retard_moyen_arrivee = 0;
+                    let retard_moyen_depart = 0;
+                    let retard_moyen_tous_trains_arrivee = 0;
+                    let retard_moyen_tous_trains_depart = 0;
+                    let retard_moyen_trains_retard_sup15 = 0;
+
+                    for(let res in results){
+                        let date = results[res].fields.date;
+                        if(tmp === date){
+                            duree_moyenne += results[res].fields.duree_moyenne;
+                            nb_annulation += results[res].fields.nb_annulation;
+                            nb_train_prevu += results[res].fields.nb_train_prevu;
+
+                            nb_train_retard_depart += results[res].fields.nb_train_depart_retard;
+                            nb_train_retard_arrivee += results[res].fields.nb_train_retard_arrivee;
+                            nb_train_retard_sup_15 += results[res].fields.nb_train_retard_sup_15;
+                            nb_train_retard_sup_30 += results[res].fields.nb_train_retard_sup_30;
+                            nb_train_retard_sup_60 += results[res].fields.nb_train_retard_sup_60;
+
+                            retard_moyen_arrivee += results[res].fields.retard_moyen_arrivee;
+                            retard_moyen_depart += results[res].fields.retard_moyen_depart;
+                            retard_moyen_tous_trains_arrivee += results[res].fields.retard_moyen_tous_trains_arrivee;
+                            retard_moyen_tous_trains_depart += results[res].fields.retard_moyen_tous_trains_depart;
+                            retard_moyen_trains_retard_sup15 += results[res].fields.retard_moyen_trains_retard_sup15;
+                        }
+                        else {
+                            if(tmp !== ''){
+                                newTab[tmp] = {
+                                    'duree_moyenne' : duree_moyenne,
+                                    'nb_annulation' : nb_annulation,
+                                    'nb_train_prevu' : nb_train_prevu,
+                                    'nb_train_retard_depart' : nb_train_retard_depart,
+                                    'nb_train_retard_arrivee' : nb_train_retard_arrivee,
+                                    'nb_train_retard_sup_15' : nb_train_retard_sup_15,
+                                    'nb_train_retard_sup_30' : nb_train_retard_sup_30,
+                                    'nb_train_retard_sup_60' : nb_train_retard_sup_60,
+                                    'retard_moyen_arrivee' : retard_moyen_arrivee,
+                                    'retard_moyen_depart' : retard_moyen_depart,
+                                    'retard_moyen_tous_trains_arrivee' : retard_moyen_tous_trains_arrivee,
+                                    'retard_moyen_tous_trains_depart' : retard_moyen_tous_trains_depart,
+                                    'retard_moyen_trains_retard_sup15' : retard_moyen_trains_retard_sup15,
+                                }
+                            }
+                            duree_moyenne = results[res].fields.duree_moyenne;
+                            nb_annulation = results[res].fields.nb_annulation;
+                            nb_train_prevu = results[res].fields.nb_train_prevu;
+
+                            nb_train_retard_depart = results[res].fields.nb_train_depart_retard;
+                            nb_train_retard_arrivee = results[res].fields.nb_train_retard_arrivee;
+                            nb_train_retard_sup_15 = results[res].fields.nb_train_retard_sup_15;
+                            nb_train_retard_sup_30 = results[res].fields.nb_train_retard_sup_30;
+                            nb_train_retard_sup_60 = results[res].fields.nb_train_retard_sup_60;
+
+                            retard_moyen_arrivee = results[res].fields.retard_moyen_arrivee;
+                            retard_moyen_depart = results[res].fields.retard_moyen_depart;
+                            retard_moyen_tous_trains_arrivee = results[res].fields.retard_moyen_tous_trains_arrivee;
+                            retard_moyen_tous_trains_depart = results[res].fields.retard_moyen_tous_trains_depart;
+                            retard_moyen_trains_retard_sup15 = results[res].fields.retard_moyen_trains_retard_sup15;
+                            tmp = date;
+                        }
+                    }
+                    this.data4 = newTab;
+                    // console.log(newTab);
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                })
+                .finally(() => this.loading4 = false)
         },
     }
 </script>
