@@ -21,7 +21,7 @@
             </section>
 
             <section class="elem" id="elem2">
-                <div id="graphs">
+                <div class="sectorGraph" id="graphs">
                     <p>un graph ici</p>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
@@ -47,10 +47,10 @@
                     <p>un graph ici</p>
                 </div>
             </section>
+
+            <button @click="test()">test ici</button>
         </section>
     </div>
-
-    <script src="https://d3js.org/d3.v3.min.js"></script>
 </template>
 
 <script>
@@ -91,10 +91,11 @@
                     this.nb_ret_s60 += this.data[res]['nb_train_retard_sup_60'];
                 }
             },
+
             test(){
                 let name = ["A l'heure", "Annulé", "Retard 15 min", "Retard 30 min", "Retard 60 min"];
                 let value = [3000, this.global_annulation, this.nb_ret_s15, this.nb_ret_s30, this.nb_ret_s60];
-                let className = '.graphs';
+                let className = '.sectorGraph';
                 drawSecteurGraph(name, value, className);
             }
         },

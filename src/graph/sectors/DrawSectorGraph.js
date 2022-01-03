@@ -1,4 +1,4 @@
-"use strict"
+import * as d3 from "d3";
 
 function drawSecteurGraph(elements, valeurs, className){
     let svg = d3.select(className)
@@ -15,7 +15,7 @@ function drawSecteurGraph(elements, valeurs, className){
         height = 450,
         radius = Math.min(width, height) / 2;
 
-    let pie = d3.layout.pie()
+    let pie = d3.pie()
         .sort(null)
         .value(function(d) {
             return d.value;
@@ -135,7 +135,7 @@ function drawSecteurGraph(elements, valeurs, className){
 
         polyline.exit()
             .remove();
-    };
+    }
 }
 
 export default drawSecteurGraph;
