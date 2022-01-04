@@ -9,7 +9,11 @@
             <!-- <p>{{ this.data1 }}</p><br> -->
             <!-- <p>{{ this.data2 }}</p><br> -->
             <!-- <p>{{ this.data3 }}</p><br> -->
-            <p>{{ this.data4 }}</p><br>
+            <!-- <p>{{ this.data4 }}</p><br> -->
+        </section>
+
+        <section>
+            <button @click="test2()">test</button>
         </section>
     </div>
 </template>
@@ -61,7 +65,10 @@
                     }
                 }
                 this.data1 = result;
-                console.log(result);
+            },
+
+            test2(){
+
             }
         },
 
@@ -132,7 +139,7 @@
                 })
                 .finally(() => this.loading3 = false)
 
-            // Get Retard train
+            // // Get Retard train
             axios
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
                 .then(response => {

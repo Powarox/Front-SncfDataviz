@@ -11,6 +11,9 @@ function drawSecteurGraph(elements, valeurs, className){
     svg.append("g")
         .attr("class", "lines");
 
+    console.log(svg);
+    console.log(className);
+
     let width = 960,
         height = 450,
         radius = Math.min(width, height) / 2;
@@ -21,11 +24,11 @@ function drawSecteurGraph(elements, valeurs, className){
             return d.value;
         });
 
-    let arc = d3.svg.arc()
+    let arc = d3.arc()
         .outerRadius(radius * 0.8)
         .innerRadius(radius * 0.4);
 
-    let outerArc = d3.svg.arc()
+    let outerArc = d3.arc()
         .innerRadius(radius * 0.9)
         .outerRadius(radius * 0.9);
 
@@ -33,7 +36,7 @@ function drawSecteurGraph(elements, valeurs, className){
 
     let key = function(d){ return d.data.label; };
 
-    let color = d3.scale.ordinal()
+    let color = d3.scaleOrdinal()
         .domain(elements)
         .range(["#26547C", "#FFCF60", "#FE4A49", "#499F68", "#4381C1", "#900C3E"]);
 
