@@ -7,19 +7,19 @@ export default {
     },
 
     getters: {
-        getFilter(state) {
-            return state.filter;
+        getData(state) {
+            return state.data;
         },
     },
 
     actions: {
-        updateGrid({commit}, list) {
-            commit('UPDATEGRID', list);
+        updateData({commit}, list) {
+            commit('UPDATEDATA', list);
         },
     },
 
     mutations: {
-        UPDATEGRID(state, list) {
+        UPDATEDATA(state, list) {
             state.data = list;
         },
     }

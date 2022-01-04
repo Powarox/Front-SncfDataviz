@@ -10,8 +10,9 @@
 
             <section class="elem" id="elem2">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
-                <div id="graphs">
-                    <p>un graph ici</p>
+
+                <div id="lineChart">
+                    <LineChart/>
                 </div>
             </section>
 
@@ -53,13 +54,16 @@
 
 <script>
     import axios from "axios";
+    import { mapActions } from 'vuex';
     import Slidebar from "../components/SlideBar.vue";
+    import LineChart from '../components/LineChart.vue';
 
     export default {
         name: 'Home',
         components: {
-            Slidebar
+            Slidebar, LineChart,
         },
+
         data() {
             return {
                 info: null,
@@ -76,7 +80,17 @@
                 nb_ret_s60: 0,
             }
         },
+
         methods: {
+            ...mapActions([
+                'updateData',
+            ]),
+
+            up(){
+                console.log('-- up --');
+                this.updateData(this.data);
+            },
+
             GlobalTrainLate(){
                 for(let res in this.data){
                     this.global_train += this.data[res]['nb_train_prevu'];
@@ -95,7 +109,6 @@
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
                 .then(response => {
                     let results = response.data.records;
-                    let newTab = {};
                     let tmp = '';
 
                     let duree_moyenne = 0;
@@ -135,7 +148,7 @@
                         }
                         else {
                             if(tmp !== ''){
-                                newTab[tmp] = {
+                                this.data[tmp] = {
                                     'duree_moyenne' : duree_moyenne,
                                     'nb_annulation' : nb_annulation,
                                     'nb_train_prevu' : nb_train_prevu,
@@ -169,9 +182,8 @@
                             tmp = date;
                         }
                     }
-                    this.data = newTab;
                     this.GlobalTrainLate();
-                    // console.log(newTab);
+                    this.up();
                 })
                 .catch(error => {
                     console.log(error)
@@ -209,6 +221,10 @@
         align-items: center;
         justify-items: center;
         padding: 0 2%;
+    }
+
+    #lineChart {
+        width: 300px;
     }
 
     #graphs {

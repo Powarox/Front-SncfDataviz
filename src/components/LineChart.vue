@@ -1,33 +1,63 @@
 <script>
-    import { defineComponent } from 'vue'
-    import { Line } from 'vue3-chart-v2'
+    import { mapGetters } from 'vuex';
+    import { defineComponent } from 'vue';
+    import { Line } from 'vue3-chart-v2';
 
     export default defineComponent({
         name: 'LineChart',
         extends: Line,
+
+        data() {
+            return {
+                data: [],
+            }
+        },
+
+        methods: {
+            ...mapGetters([
+                'getData',
+            ]),
+
+            up(){
+                return this.getData();
+            }
+        },
+
         mounted () {
+            let data = this.up();
+            let months = [];
+            let dataset1 = [];
+            let dataset2 = [];
+            let dataset3 = [];
+
+            for(let i in data){
+                months.push(i);
+                dataset1.push(data[i]['nb_train_retard_sup_15']);
+                dataset2.push(data[i]['nb_train_retard_sup_30']);
+                dataset3.push(data[i]['nb_train_retard_sup_60']);
+            }
+
+            console.log(months);
+
             this.renderChart({
-                labels: ['January', 'February', 'March', 'April', 'May'],
-                title: {
-                    display: true,
-                    text: 'Chart.js Line Chart'
-                },
+                labels: months.reverse(),
                 datasets: [
                     {
-                          label: 'GitHub Commits',
-                          backgroundColor: '#f87979',
-                          data: [40, 20, 12, 39, 10]
-                    },
-                    {
-                          label: 'GitHub',
-                          backgroundColor: '#348AF4',
-                          data: [40, 39, 50, 40, 20]
-                    },
-                    {
-                          label: 'Commits',
+                          label: 'Retard Sup 60 min',
                           backgroundColor: 'green',
-                          data: [23, 35, 24, 50, 5]
-                    }
+                          data: dataset3.reverse()
+                    },
+                    {
+                          label: 'Retard Sup 30 min',
+                          backgroundColor: '#348AF4',
+                          data: dataset2.reverse()
+                    },
+                    {
+                          label: 'Retard Sup 15 min',
+                          backgroundColor: '#f87979',
+                          data: dataset1.reverse()
+                    },
+
                 ]
             })
         }
