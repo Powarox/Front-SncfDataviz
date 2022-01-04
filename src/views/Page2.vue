@@ -9,7 +9,7 @@
             <!-- <p>{{ this.data1 }}</p><br> -->
             <!-- <p>{{ this.data2 }}</p><br> -->
             <!-- <p>{{ this.data3 }}</p><br> -->
-            <!-- <p>{{ this.data4 }}</p><br> -->
+            <p>{{ this.data4 }}</p><br>
         </section>
 
         <section>
@@ -20,6 +20,7 @@
 
 <script>
     import axios from "axios";
+    import { mapGetters } from 'vuex';
 
     export default {
         name: 'Page2',
@@ -41,6 +42,10 @@
         },
 
         methods: {
+            ...mapGetters([
+                'getFilter',
+            ]),
+
             test(){
                 let result = [];
                 let count = 0;
@@ -68,7 +73,7 @@
             },
 
             test2(){
-
+                console.log('Filter here : ' + this.getFilter());
             }
         },
 
@@ -219,7 +224,6 @@
                         }
                     }
                     this.data4 = newTab;
-                    // console.log(newTab);
                 })
                 .catch(error => {
                     console.log(error)

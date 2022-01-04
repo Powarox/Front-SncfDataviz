@@ -8,18 +8,20 @@
         <br><br>
 
         <section class='test'>
-            <BarChart/>
+            <!-- <BarChart/> -->
+            <LineChart/>
         </section>
     </div>
 </template>
 
 <script>
-    import BarChart from '../components/BarChart.vue';
+    // import BarChart from '../components/BarChart.vue';
+    import LineChart from '../components/LineChart.vue';
 
     export default {
         name: 'Page2',
         components: {
-            BarChart
+             LineChart
         },
         data() {
             return {
@@ -37,5 +39,9 @@
 
     p {
         margin: 0;
+    }
+
+    .test {
+        width: 500px;
     }
 </style>

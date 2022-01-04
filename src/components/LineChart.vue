@@ -3,20 +3,33 @@
     import { Line } from 'vue3-chart-v2'
 
     export default defineComponent({
-      name: 'LineChart',
-      extends: Line,
-      mounted () {
-        // Overwriting base render method with actual data.
-        this.renderChart({
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          datasets: [
-            {
-              label: 'GitHub Commits',
-              backgroundColor: '#f87979',
-              data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
-            }
-          ]
-        })
-      }
+        name: 'LineChart',
+        extends: Line,
+        mounted () {
+            this.renderChart({
+                labels: ['January', 'February', 'March', 'April', 'May'],
+                title: {
+                    display: true,
+                    text: 'Chart.js Line Chart'
+                },
+                datasets: [
+                    {
+                          label: 'GitHub Commits',
+                          backgroundColor: '#f87979',
+                          data: [40, 20, 12, 39, 10]
+                    },
+                    {
+                          label: 'GitHub',
+                          backgroundColor: '#348AF4',
+                          data: [40, 39, 50, 40, 20]
+                    },
+                    {
+                          label: 'Commits',
+                          backgroundColor: 'green',
+                          data: [23, 35, 24, 50, 5]
+                    }
+                ]
+            })
+        }
     })
 </script>
