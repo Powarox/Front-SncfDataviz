@@ -45,8 +45,8 @@
                     <li>Train avec un retard supérieur à 30min : {{ this.nb_ret_s30.toLocaleString('fr-FR') }}</li>
                     <li>Train avec un retard supérieur à 60min : {{ this.nb_ret_s60.toLocaleString('fr-FR') }}</li>
                 </div>
-                <div id="graphs">
-                    <p>un graph ici</p>
+                <div id="barChart">
+                    <BarChart/>
                 </div>
             </section>
         </section>
@@ -57,13 +57,14 @@
     import axios from "axios";
     import { mapActions } from 'vuex';
     import Slidebar from "../components/SlideBar.vue";
+    import BarChart from '../components/BarChart.vue';
     import LineChart from '../components/LineChart.vue';
     import DoughnutChart from '../components/DoughnutChart.vue';
 
     export default {
         name: 'Home',
         components: {
-            Slidebar, LineChart, DoughnutChart
+            Slidebar, BarChart, LineChart, DoughnutChart
         },
 
         data() {
@@ -110,7 +111,7 @@
                     labels: ['label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
                     datasets: [
                         {
-                            backgroundColor: ['#f87979', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
+                            backgroundColor: ['#E56B6F', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
                             data: [2, 5, 1, 4, 3]
                         },
                     ]
@@ -223,7 +224,7 @@
 <style lang="css" scoped>
     #home {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 5fr;
         grid-gap: 10px;
         padding: 5px;
     }
@@ -249,9 +250,14 @@
         padding: 0 2%;
     }
 
-    #lineChart, #DoughnutChart{
-        width: 400px;
+    #barChart, #lineChart, #DoughnutChart{
+        width: 300px;
     }
+
+    /* .chartjs-render-monitor {
+        width: 400px;
+        height: 300px;
+    } */
 
     #graphs {
         width: 100%;

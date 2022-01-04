@@ -55,7 +55,7 @@
                 datasets: [
                     {
                           label: '60 min',
-                          backgroundColor: 'green',
+                          backgroundColor: '#499F68',
                           data: dataset3.reverse()
                     },
                     {
@@ -65,7 +65,7 @@
                     },
                     {
                           label: '15 min',
-                          backgroundColor: '#f87979',
+                          backgroundColor: '#E56B6F',
                           data: dataset1.reverse()
                     },
 
