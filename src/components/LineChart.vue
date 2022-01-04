@@ -6,6 +6,17 @@
     export default defineComponent({
         name: 'LineChart',
         extends: Line,
+        // options: {
+        //     plugins: {
+        //         legend: {
+        //             position: 'top',
+        //           },
+        //         title: {
+        //             display: true,
+        //             text: 'Chart.js Line Chart'
+        //         },
+        //     },
+        // },
 
         data() {
             return {
@@ -43,17 +54,17 @@
                 labels: months.reverse(),
                 datasets: [
                     {
-                          label: 'Retard Sup 60 min',
+                          label: '60 min',
                           backgroundColor: 'green',
                           data: dataset3.reverse()
                     },
                     {
-                          label: 'Retard Sup 30 min',
+                          label: '30 min',
                           backgroundColor: '#348AF4',
                           data: dataset2.reverse()
                     },
                     {
-                          label: 'Retard Sup 15 min',
+                          label: '15 min',
                           backgroundColor: '#f87979',
                           data: dataset1.reverse()
                     },

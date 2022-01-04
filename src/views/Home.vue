@@ -12,6 +12,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate .</p>
 
                 <div id="lineChart">
+                    <!-- <h3>Nombre de train en retard</h3> -->
                     <LineChart/>
                 </div>
             </section>
@@ -22,8 +23,8 @@
             </section>
 
             <section class="elem" id="elem2">
-                <div class="sectorGraph" id="graphs">
-
+                <div id="DoughnutChart">
+                    <DoughnutChart v-bind:chartData="state.chartData" :chartOptions="state.chartOptions"/>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
             </section>
@@ -37,7 +38,7 @@
                 <div class="">
                     <h4>Nombre total des retards depuis 2018</h4>
                     <li>Train : {{ this.global_train.toLocaleString('fr-FR') }}</li>
-                    <li>Train annulé : {{ this.global_annulation.toLocaleString('fr-FR') }}</li>
+                    <li>Train annulé : {{ this.nb_tot_ann.toLocaleString('fr-FR') }}</li>
                     <li>Train en retard au depart : {{ this.nb_ret_dep.toLocaleString('fr-FR') }}</li>
                     <li>Train en retard à l'arrivée: {{ this.nb_ret_arr.toLocaleString('fr-FR') }}</li>
                     <li>Train avec un retard supérieur à 15min : {{ this.nb_ret_s15.toLocaleString('fr-FR') }}</li>
@@ -57,11 +58,12 @@
     import { mapActions } from 'vuex';
     import Slidebar from "../components/SlideBar.vue";
     import LineChart from '../components/LineChart.vue';
+    import DoughnutChart from '../components/DoughnutChart.vue';
 
     export default {
         name: 'Home',
         components: {
-            Slidebar, LineChart,
+            Slidebar, LineChart, DoughnutChart
         },
 
         data() {
@@ -72,13 +74,25 @@
                 data: [],
 
                 global_train: 0,
-                global_annulation: 0,
+                // nb_in_time: 0,
+                nb_tot_ann: 0,
                 nb_ret_dep: 0,
                 nb_ret_arr: 0,
                 nb_ret_s15: 0,
                 nb_ret_s30: 0,
                 nb_ret_s60: 0,
+
+                state: {
+                    chartData: {},
+                    chartOptions: {
+                        responsive: true
+                    }
+                }
             }
+        },
+
+        beforeMount () {
+            this.fillData()
         },
 
         methods: {
@@ -91,10 +105,22 @@
                 this.updateData(this.data);
             },
 
+            fillData() {
+                this.state.chartData = {
+                    labels: ['label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+                    datasets: [
+                        {
+                            backgroundColor: ['#f87979', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
+                            data: [2, 5, 1, 4, 3]
+                        },
+                    ]
+                }
+            },
+
             GlobalTrainLate(){
                 for(let res in this.data){
                     this.global_train += this.data[res]['nb_train_prevu'];
-                    this.global_annulation += this.data[res]['nb_annulation'];
+                    this.nb_tot_ann += this.data[res]['nb_annulation'];
                     this.nb_ret_dep += this.data[res]['nb_train_retard_depart'];
                     this.nb_ret_arr += this.data[res]['nb_train_retard_arrivee'];
                     this.nb_ret_s15 += this.data[res]['nb_train_retard_sup_15'];
@@ -223,8 +249,8 @@
         padding: 0 2%;
     }
 
-    #lineChart {
-        width: 300px;
+    #lineChart, #DoughnutChart{
+        width: 400px;
     }
 
     #graphs {
