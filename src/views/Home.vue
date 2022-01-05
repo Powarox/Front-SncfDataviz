@@ -13,7 +13,7 @@
 
                 <div id="lineChart">
                     <!-- <h3>Nombre de train en retard</h3> -->
-                    <LineChart v-bind:chartData="state2.chartData"/>
+                    <LineChart v-bind:chartData="state1.chartData"/>
                 </div>
             </section>
 
@@ -24,7 +24,7 @@
 
             <section class="elem" id="elem2">
                 <div id="DoughnutChart">
-                    <DoughnutChart v-bind:chartData="state.chartData"/>
+                    <DoughnutChart v-bind:chartData="state2.chartData"/>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
             </section>
@@ -37,16 +37,16 @@
             <section class="elem" id="elem3">
                 <div class="">
                     <h4>Nombre total des retards depuis 2018</h4>
-                    <li>Train : {{ this.global_train.toLocaleString('fr-FR') }}</li>
+                    <!-- <li>Train : {{ this.global_train.toLocaleString('fr-FR') }}</li>
                     <li>Train annulé : {{ this.nb_tot_ann.toLocaleString('fr-FR') }}</li>
                     <li>Train en retard au depart : {{ this.nb_ret_dep.toLocaleString('fr-FR') }}</li>
                     <li>Train en retard à l'arrivée: {{ this.nb_ret_arr.toLocaleString('fr-FR') }}</li>
                     <li>Train avec un retard supérieur à 15min : {{ this.nb_ret_s15.toLocaleString('fr-FR') }}</li>
                     <li>Train avec un retard supérieur à 30min : {{ this.nb_ret_s30.toLocaleString('fr-FR') }}</li>
-                    <li>Train avec un retard supérieur à 60min : {{ this.nb_ret_s60.toLocaleString('fr-FR') }}</li>
+                    <li>Train avec un retard supérieur à 60min : {{ this.nb_ret_s60.toLocaleString('fr-FR') }}</li> -->
                 </div>
                 <div id="barChart">
-                    <BarChart/>
+                    <BarChart v-bind:chartData="state3.chartData"/>
                 </div>
             </section>
         </section>
@@ -68,29 +68,19 @@
 
         data() {
             return {
-                info: null,
-                errored: false,
-                loading: true,
-                dataset1: {},
-                dataset2: {},
-
-                global_train: 0,
-                nb_in_time: 0,
-                nb_tot_ann: 0,
-                nb_ret_dep: 0,
-                nb_ret_arr: 0,
-                nb_ret_s15: 0,
-                nb_ret_s30: 0,
-                nb_ret_s60: 0,
-
-                state: {
+                state1: {
                     chartData: {},
                     chartOptions: {
                         responsive: true
                     }
                 },
-
                 state2: {
+                    chartData: {},
+                    chartOptions: {
+                        responsive: true
+                    }
+                },
+                state3: {
                     chartData: {},
                     chartOptions: {
                         responsive: true
@@ -100,22 +90,61 @@
         },
 
         beforeMount() {
-            this.fillData();
+            this.fillData1();
             this.fillData2();
+            this.fillData3();
         },
 
-        // updated() {
-        //     this.fillData();
-        // },
+        updated() {
+            this.fillData1();
+            this.fillData2();
+            this.fillData3();
+        },
 
         methods: {
             ...mapGetters([
                 'getDataset1', 'getDataset2',
             ]),
 
-            fillData() {
+            fillData1() {
+                let data = this.getDataset1();
+                let months = [];
+                let data1 = [];
+                let data2 = [];
+                let data3 = [];
+
+                for(let i in data){
+                    months.push(i);
+                    data1.push(data[i]['nb_train_retard_sup_15']);
+                    data2.push(data[i]['nb_train_retard_sup_30']);
+                    data3.push(data[i]['nb_train_retard_sup_60']);
+                }
+
+                this.state1.chartData = {
+                    labels: months.reverse(),
+                    datasets: [
+                        {
+                              label: '60 min',
+                              backgroundColor: '#499F68',
+                              data: data3.reverse()
+                        },
+                        {
+                              label: '30 min',
+                              backgroundColor: '#348AF4',
+                              data: data2.reverse()
+                        },
+                        {
+                              label: '15 min',
+                              backgroundColor: '#E56B6F',
+                              data: data1.reverse()
+                        },
+                    ]
+                }
+            },
+
+            fillData2() {
                 let data = this.getDataset2();
-                this.state.chartData = {
+                this.state2.chartData = {
                     labels: ['A l\'heure', 'Annulés', 'Retard 15min', 'Retard 30min', 'Retard 60min'],
                     datasets: [
                         {
@@ -126,42 +155,37 @@
                 }
             },
 
-            fillData2() {
+            fillData3() {
                 let data = this.getDataset1();
                 let months = [];
-                let dataset1 = [];
-                let dataset2 = [];
-                let dataset3 = [];
+                let data1 = [];
+                let data2 = [];
 
                 for(let i in data){
-                    months.push(i);
-                    dataset1.push(data[i]['nb_train_retard_sup_15']);
-                    dataset2.push(data[i]['nb_train_retard_sup_30']);
-                    dataset3.push(data[i]['nb_train_retard_sup_60']);
+                    if(data[i]['journees_perdues']){
+                        months.push(i);
+                        data1.push(data[i]['nb_train_retard_depart']);
+                        data2.push(data[i]['nb_train_retard_arrivee']);
+                    }
+
                 }
 
-                this.state2.chartData = {
+                this.state3.chartData = {
                     labels: months.reverse(),
                     datasets: [
                         {
-                              label: '60 min',
+                              label: 'Retards depart',
                               backgroundColor: '#499F68',
-                              data: dataset3.reverse()
+                              data: data1.reverse()
                         },
                         {
-                              label: '30 min',
+                              label: 'Retards arrivée',
                               backgroundColor: '#348AF4',
-                              data: dataset2.reverse()
-                        },
-                        {
-                              label: '15 min',
-                              backgroundColor: '#E56B6F',
-                              data: dataset1.reverse()
+                              data: data2.reverse()
                         },
                     ]
                 }
             },
-
         },
     }
 </script>
