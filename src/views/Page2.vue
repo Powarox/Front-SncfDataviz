@@ -42,6 +42,12 @@
                     for(let key in this.data1[date]){
                         this.data4[date][key] = this.data1[date][key]
                     }
+                    if(this.data4[date]['journees_perdues']){
+                        console.log('ok');
+                    }
+                    else {
+                        console.log('not here');
+                    }
                 }
                 console.log(this.data4);
             }

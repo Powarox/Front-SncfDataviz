@@ -29,13 +29,13 @@
                 'getData',
             ]),
 
-            up(){
+            updateData(){
                 return this.getData();
             }
         },
 
         mounted () {
-            let data = this.up();
+            let data = this.updateData();
             let months = [];
             let dataset1 = [];
             let dataset2 = [];
