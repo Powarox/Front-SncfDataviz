@@ -10,23 +10,23 @@
             <section class="content">
                 <div class="navigation">
                     <h3>Nagivation</h3>
-                    <div class="line">-kok</div>
+                    <div class="line"></div>
                     <div>
-                        <li>Overview</li>
-                        <li>Pricing</li>
-                        <li>News</li>
-                        <li>About Us</li>
-                        <li>FAQ</li>
-                        <li>Carrers</li>
-                        <li>Press</li>
-                        <li>Documentation</li>
+                        <a href="#">Overview</a>
+                        <a href="#">Pricing</a>
+                        <a href="#">News</a>
+                        <a href="#">About Us</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Carrers</a>
+                        <a href="#">Press</a>
+                        <a href="#">Documentation</a>
                     </div>
                 </div>
 
                 <div class="contact">
                     <h3>Contact information</h3>
                     <div class="line"></div>
-                    <p><i class="fas fa-map-marker-alt"></i> Campus 2 Unicaen cote de nacre</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Unicaen Campus 2 Côte de nacre. Boulevard Maréchal Juin 14032 Caen Cedex 5</p>
                     <p><i class="fas fa-phone"></i> <a href="#">06 42 87 64 06</a></p>
 
                     <p><i class="far fa-envelope"></i> <a href="#">21606393@etu.unicaen.fr</a></p>
@@ -35,13 +35,14 @@
                 <div class="newsletter">
                     <h3>Newsletter</h3>
                     <div class="line"></div>
-                    <input type="text" name="" placeholder="Your email">
-                    <button type="submit" name="button">Subscribe</button>
-
+                    <div class="form">
+                        <input type="text" name="" placeholder="Your email">
+                        <button type="submit" name="button">Subscribe</button>
+                    </div>
                     <p>Connect : </p>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-linkedin"></i>
-                    <i class="fab fa-github"></i>
+                    <a href="#"><i class="ball fab fa-instagram"></i></a>
+                    <a href="#"><i class="ball fab fa-linkedin"></i></a>
+                    <a href="#"><i class="ball fab fa-github"></i></a>
                 </div>
             </section>
             <section class="bottom">
@@ -56,6 +57,7 @@
         }
 
         a {
+            color: #E56B6F;
             text-decoration: none;
         }
 
@@ -72,15 +74,19 @@
             grid-template-columns: 1fr 1fr 1fr;
         }
 
-        footer .content div {
-            margin: 0 10%;
+        footer .content {
+            margin: 0 5%;
         }
 
         .line {
             width: 70px;
             height: 5px;
             background: #E56B6F;
-            margin: 50px 0;
+            margin-bottom: 30px;
+        }
+
+        .navigation {
+            padding: 20px;
         }
 
         .navigation div {
@@ -88,27 +94,49 @@
             grid-template-columns: 1fr 1fr;
         }
 
-        .navigation div li {
+        .navigation a {
             margin: 5px 10px;
         }
 
-        .newsletter {
+        .contact {
+            padding: 20px;
+        }
 
+        .newsletter {
+            padding: 20px;
+        }
+
+        .newsletter .form {
+            display: grid;
+            grid-template-columns: 4fr 2fr;
         }
 
         .newsletter input {
-            height: 25px;
+            height: 30px;
             border: 0.5px solid #DDD;
             border-radius: 5px;
         }
 
         .newsletter button {
             height: 35px;
+            margin: 0 10px;
             border: 1px solid #E56B6F;
             border-radius: 5px;
             color: #EEE;
             background: #E56B6F;
             font-weight: bold;
+            cursor: pointer;
+        }
+
+        .newsletter i {
+            margin: 0 5px;
+            padding: 10px;
+            border: 2px solid #E56B6F;
+            border-radius: 50%;
+            color: #DDD;
+            background: #E56B6F;
+            font-weight: bold;
+            font-size: 25px;
         }
 
 
@@ -117,10 +145,6 @@
             text-align: center;
             border-top: 1px solid #CCC;
         }
-
-
-
-
 
 
 
