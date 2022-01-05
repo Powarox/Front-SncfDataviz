@@ -22,16 +22,30 @@
             ]),
 
             GlobalTrainLate(){
+                let val1 = 0;
+                let val2 = 0;
+                let val3 = 0;
+                let val4 = 0;
+                let val5 = 0;
+                let val6 = 0;
+                let val7 = 0;
                 for(let res in this.dataset1){
-                    this.dataset2['global_train'] += this.dataset1[res]['nb_train_prevu'];
-                    this.dataset2['nb_tot_ann'] += this.dataset1[res]['nb_annulation'];
-                    this.dataset2['nb_ret_dep'] += this.dataset1[res]['nb_train_retard_depart'];
-                    this.dataset2['nb_ret_arr'] += this.dataset1[res]['nb_train_retard_arrivee'];
-                    this.dataset2['nb_ret_s15'] += this.dataset1[res]['nb_train_retard_sup_15'];
-                    this.dataset2['nb_ret_s30'] += this.dataset1[res]['nb_train_retard_sup_30'];
-                    this.dataset2['nb_ret_s60'] += this.dataset1[res]['nb_train_retard_sup_60'];
+                    val1 += this.dataset1[res]['nb_train_prevu'];
+                    val2 += this.dataset1[res]['nb_annulation'];
+                    val3 += this.dataset1[res]['nb_train_retard_depart'];
+                    val4 += this.dataset1[res]['nb_train_retard_arrivee'];
+                    val5 += this.dataset1[res]['nb_train_retard_sup_15'];
+                    val6 += this.dataset1[res]['nb_train_retard_sup_30'];
+                    val7 += this.dataset1[res]['nb_train_retard_sup_60'];
                 }
-                this.dataset2['nb_in_time'] = this.dataset2['global_train'] - this.dataset2['nb_ret_arr'] - this.dataset2['nb_tot_ann']
+                this.dataset2['global_train'] = val1;
+                this.dataset2['nb_tot_ann'] = val2;
+                this.dataset2['nb_ret_dep'] = val3;
+                this.dataset2['nb_ret_arr'] = val4;
+                this.dataset2['nb_ret_s15'] = val5;
+                this.dataset2['nb_ret_s30'] = val6;
+                this.dataset2['nb_ret_s60'] = val7;
+                this.dataset2['nb_in_time'] = val1 - val2 - val4;
             },
 
             addDataFromOtherAPI(){

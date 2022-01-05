@@ -21,7 +21,7 @@ export default {
             commit('UPDATEDATASET1', list);
         },
         updateDataset2({commit}, list) {
-            commit('UPDATEDATASET1', list);
+            commit('UPDATEDATASET2', list);
         },
     },
 

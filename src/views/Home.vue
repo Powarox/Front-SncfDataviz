@@ -13,7 +13,7 @@
 
                 <div id="lineChart">
                     <!-- <h3>Nombre de train en retard</h3> -->
-                    <LineChart/>
+                    <LineChart v-bind:chartData="state2.chartData"/>
                 </div>
             </section>
 
@@ -54,8 +54,7 @@
 </template>
 
 <script>
-    import axios from "axios";
-    import { mapActions } from 'vuex';
+    import { mapGetters } from 'vuex';
     import Slidebar from "../components/SlideBar.vue";
     import BarChart from '../components/BarChart.vue';
     import LineChart from '../components/LineChart.vue';
@@ -89,179 +88,81 @@
                     chartOptions: {
                         responsive: true
                     }
-                }
+                },
+
+                state2: {
+                    chartData: {},
+                    chartOptions: {
+                        responsive: true
+                    }
+                },
             }
         },
 
-        beforeMount () {
+        beforeMount() {
             this.fillData();
+            this.fillData2();
         },
 
-        updated() {
-            this.fillData();
-        },
+        // updated() {
+        //     this.fillData();
+        // },
 
         methods: {
-            ...mapActions([
-                'updateDataset1',
+            ...mapGetters([
+                'getDataset1', 'getDataset2',
             ]),
 
             fillData() {
+                let data = this.getDataset2();
                 this.state.chartData = {
                     labels: ['A l\'heure', 'Annulés', 'Retard 15min', 'Retard 30min', 'Retard 60min'],
                     datasets: [
                         {
                             backgroundColor: ['#E56B6F', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
-                            data: [this.nb_in_time, this.nb_tot_ann, this.nb_ret_s15, this.nb_ret_s30, this.nb_ret_s60]
+                            data: [data['nb_in_time'], data['nb_tot_ann'], data['nb_ret_s15'], data['nb_ret_s30'], data['nb_ret_s60']]
                         },
                     ]
                 }
             },
 
-            GlobalTrainLate(){
-                for(let res in this.dataset1){
-                    this.global_train += this.dataset1[res]['nb_train_prevu'];
-                    this.nb_tot_ann += this.dataset1[res]['nb_annulation'];
-                    this.nb_ret_dep += this.dataset1[res]['nb_train_retard_depart'];
-                    this.nb_ret_arr += this.dataset1[res]['nb_train_retard_arrivee'];
-                    this.nb_ret_s15 += this.dataset1[res]['nb_train_retard_sup_15'];
-                    this.nb_ret_s30 += this.dataset1[res]['nb_train_retard_sup_30'];
-                    this.nb_ret_s60 += this.dataset1[res]['nb_train_retard_sup_60'];
-                }
-                this.nb_in_time = this.global_train - this.nb_ret_arr - this.nb_tot_ann;
-            },
+            fillData2() {
+                let data = this.getDataset1();
+                let months = [];
+                let dataset1 = [];
+                let dataset2 = [];
+                let dataset3 = [];
 
-            addDataFromOtherAPI(){
-                for(let date in this.dataset1){
-                    for(let key in this.dataset2[date]){
-                        this.dataset1[date][key] = this.dataset2[date][key]
-                    }
+                for(let i in data){
+                    months.push(i);
+                    dataset1.push(data[i]['nb_train_retard_sup_15']);
+                    dataset2.push(data[i]['nb_train_retard_sup_30']);
+                    dataset3.push(data[i]['nb_train_retard_sup_60']);
                 }
-                console.log(this.dataset1);
-            },
 
-            upgradDatabase(){
-                console.log('-- Upgrade Data --');
-                this.updateDataset1(this.dataset1);
+                this.state2.chartData = {
+                    labels: months.reverse(),
+                    datasets: [
+                        {
+                              label: '60 min',
+                              backgroundColor: '#499F68',
+                              data: dataset3.reverse()
+                        },
+                        {
+                              label: '30 min',
+                              backgroundColor: '#348AF4',
+                              data: dataset2.reverse()
+                        },
+                        {
+                              label: '15 min',
+                              backgroundColor: '#E56B6F',
+                              data: dataset1.reverse()
+                        },
+                    ]
+                }
             },
 
         },
-        mounted() {
-            axios
-                .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
-                .then(response => {
-                    let results = response.data.records;
-                    let tmp = '';
-
-                    let duree_moyenne = 0;
-                    let nb_annulation = 0;
-                    let nb_train_prevu = 0;
-
-                    let nb_train_retard_depart = 0;
-                    let nb_train_retard_arrivee = 0;
-                    let nb_train_retard_sup_15 = 0;
-                    let nb_train_retard_sup_30 = 0;
-                    let nb_train_retard_sup_60 = 0;
-
-                    let retard_moyen_arrivee = 0;
-                    let retard_moyen_depart = 0;
-                    let retard_moyen_tous_trains_arrivee = 0;
-                    let retard_moyen_tous_trains_depart = 0;
-                    let retard_moyen_trains_retard_sup15 = 0;
-
-                    for(let res in results){
-                        let date = results[res].fields.date;
-                        if(tmp === date){
-                            duree_moyenne += results[res].fields.duree_moyenne;
-                            nb_annulation += results[res].fields.nb_annulation;
-                            nb_train_prevu += results[res].fields.nb_train_prevu;
-
-                            nb_train_retard_depart += results[res].fields.nb_train_depart_retard;
-                            nb_train_retard_arrivee += results[res].fields.nb_train_retard_arrivee;
-                            nb_train_retard_sup_15 += results[res].fields.nb_train_retard_sup_15;
-                            nb_train_retard_sup_30 += results[res].fields.nb_train_retard_sup_30;
-                            nb_train_retard_sup_60 += results[res].fields.nb_train_retard_sup_60;
-
-                            retard_moyen_arrivee += results[res].fields.retard_moyen_arrivee;
-                            retard_moyen_depart += results[res].fields.retard_moyen_depart;
-                            retard_moyen_tous_trains_arrivee += results[res].fields.retard_moyen_tous_trains_arrivee;
-                            retard_moyen_tous_trains_depart += results[res].fields.retard_moyen_tous_trains_depart;
-                            retard_moyen_trains_retard_sup15 += results[res].fields.retard_moyen_trains_retard_sup15;
-                        }
-                        else {
-                            if(tmp !== ''){
-                                this.dataset1[tmp] = {
-                                    'duree_moyenne' : duree_moyenne,
-                                    'nb_annulation' : nb_annulation,
-                                    'nb_train_prevu' : nb_train_prevu,
-                                    'nb_train_retard_depart' : nb_train_retard_depart,
-                                    'nb_train_retard_arrivee' : nb_train_retard_arrivee,
-                                    'nb_train_retard_sup_15' : nb_train_retard_sup_15,
-                                    'nb_train_retard_sup_30' : nb_train_retard_sup_30,
-                                    'nb_train_retard_sup_60' : nb_train_retard_sup_60,
-                                    'retard_moyen_arrivee' : retard_moyen_arrivee,
-                                    'retard_moyen_depart' : retard_moyen_depart,
-                                    'retard_moyen_tous_trains_arrivee' : retard_moyen_tous_trains_arrivee,
-                                    'retard_moyen_tous_trains_depart' : retard_moyen_tous_trains_depart,
-                                    'retard_moyen_trains_retard_sup15' : retard_moyen_trains_retard_sup15,
-                                }
-                            }
-                            duree_moyenne = results[res].fields.duree_moyenne;
-                            nb_annulation = results[res].fields.nb_annulation;
-                            nb_train_prevu = results[res].fields.nb_train_prevu;
-
-                            nb_train_retard_depart = results[res].fields.nb_train_depart_retard;
-                            nb_train_retard_arrivee = results[res].fields.nb_train_retard_arrivee;
-                            nb_train_retard_sup_15 = results[res].fields.nb_train_retard_sup_15;
-                            nb_train_retard_sup_30 = results[res].fields.nb_train_retard_sup_30;
-                            nb_train_retard_sup_60 = results[res].fields.nb_train_retard_sup_60;
-
-                            retard_moyen_arrivee = results[res].fields.retard_moyen_arrivee;
-                            retard_moyen_depart = results[res].fields.retard_moyen_depart;
-                            retard_moyen_tous_trains_arrivee = results[res].fields.retard_moyen_tous_trains_arrivee;
-                            retard_moyen_tous_trains_depart = results[res].fields.retard_moyen_tous_trains_depart;
-                            retard_moyen_trains_retard_sup15 = results[res].fields.retard_moyen_trains_retard_sup15;
-                            tmp = date;
-                        }
-                    }
-                    this.GlobalTrainLate();
-                    this.addDataFromOtherAPI();
-                    this.upgradDatabase();
-                })
-                .catch(error => {
-                    console.log(error)
-                    this.errored = true
-                })
-                .finally(() => this.loading = false)
-
-            axios
-                .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
-                .then(response => {
-                    let results = response.data.records;
-                    let stop = false;
-
-                    for(let res in results){
-                        if(!stop){
-                            if(results[res].fields['date'] === '2018-02'){
-                                this.dataset2[results[res].fields['date']] = {
-                                    'journees_perdues': results[res].fields['journees_perdues']
-                                }
-                                stop = true;
-                            }
-                            else {
-                                this.dataset2[results[res].fields['date']] = {
-                                    'journees_perdues': results[res].fields['journees_perdues']
-                                }
-                            }
-                        }
-                    }
-                })
-                .catch(error => {
-                    console.log(error)
-                    this.errored = true
-                })
-                .finally(() => this.loading1 = false)
-        }
     }
 </script>
 
