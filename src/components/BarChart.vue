@@ -34,8 +34,8 @@
                 let count = 0;
                 if(data[i]['journees_perdues']){
                     months.push(i);
-                    dataset1.push(data[i]['journees_perdues']);
-                    dataset2.push(data[i]['nb_train_prevu']);
+                    dataset1.push(data[i]['nb_train_retard_depart']);
+                    dataset2.push(data[i]['nb_train_retard_arrivee']);
                     count = data[i]['nb_train_retard_depart'] + data[i]['nb_train_retard_arrivee'];
                     dataset3.push(count);
                 }
@@ -47,15 +47,15 @@
                 labels: months.reverse(),
                 datasets: [
                     {
-                          label: 'Train retards',
+                          label: 'Retards depart',
                           backgroundColor: '#499F68',
                           data: dataset1.reverse()
                     },
-                    // {
-                    //       label: 'Train total',
-                    //       backgroundColor: '#348AF4',
-                    //       data: dataset2.reverse()
-                    // },
+                    {
+                          label: 'Retards arrivée',
+                          backgroundColor: '#348AF4',
+                          data: dataset2.reverse()
+                    },
                     // {
                     //       label: 'Train annulé',
                     //       backgroundColor: '#E56B6F',

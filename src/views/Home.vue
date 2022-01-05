@@ -24,7 +24,7 @@
 
             <section class="elem" id="elem2">
                 <div id="DoughnutChart">
-                    <DoughnutChart v-bind:chartData="state.chartData" :chartOptions="state.chartOptions"/>
+                    <DoughnutChart v-bind:chartData="state.chartData"/>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
             </section>
@@ -76,7 +76,7 @@
                 dataset2: {},
 
                 global_train: 0,
-                // nb_in_time: 0,
+                nb_in_time: 0,
                 nb_tot_ann: 0,
                 nb_ret_dep: 0,
                 nb_ret_arr: 0,
@@ -94,7 +94,11 @@
         },
 
         beforeMount () {
-            this.fillData()
+            this.fillData();
+        },
+
+        updated() {
+            this.fillData();
         },
 
         methods: {
@@ -104,12 +108,13 @@
 
             fillData() {
                 this.state.chartData = {
-                    labels: ['label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
+                    labels: ['A l\'heure', 'Annulés', 'Retard 15min', 'Retard 30min', 'Retard 60min'],
+                    title: 'okoko',
                     datasets: [
                         {
                             backgroundColor: ['#E56B6F', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
-                            data: [2, 5, 1, 4, 3]
-                        },  // train à l'heure - train annulé - retard 15 - retard 30 - retard 60 
+                            data: [this.nb_in_time, this.nb_tot_ann, this.nb_ret_s15, this.nb_ret_s30, this.nb_ret_s60]
+                        },  // train à l'heure - train annulé - retard 15 - retard 30 - retard 60
                     ]
                 }
             },
@@ -124,6 +129,7 @@
                     this.nb_ret_s30 += this.dataset1[res]['nb_train_retard_sup_30'];
                     this.nb_ret_s60 += this.dataset1[res]['nb_train_retard_sup_60'];
                 }
+                this.nb_in_time = this.global_train - this.nb_ret_arr - this.nb_tot_ann;
             },
 
             addDataFromOtherAPI(){
