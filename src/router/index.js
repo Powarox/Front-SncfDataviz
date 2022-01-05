@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import Analytics from '../views/Analytics.vue';
+
 import About from '../views/About.vue';
 import Page from '../views/Page.vue';
 import Page2 from '../views/Page2.vue';
 import Page3 from '../views/Page3.vue';
+
 import NotFound from '../views/NotFound.vue';
 
 const routes = [
@@ -13,6 +16,14 @@ const routes = [
         component: Home,
         meta: {
             title: 'Accueil',
+        }
+    },
+    {
+        path: '/Analytics',
+        name: 'Analytics',
+        component: Analytics,
+        meta: {
+            title: 'Analytics',
         }
     },
     {
