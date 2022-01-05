@@ -17,7 +17,7 @@
 
         methods: {
             ...mapActions([
-                'updateData',
+                'updateDataset1', 'updateDataset2',
             ]),
 
             GlobalTrainLate(){
@@ -42,8 +42,8 @@
             },
 
             upgradDatabase(){
-                this.updateDataSet1(this.dataset1);
-                this.updateDataSet2(this.dataset2);
+                this.updateDataset1(this.dataset1);
+                this.updateDataset2(this.dataset2);
             },
 
         },

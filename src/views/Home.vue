@@ -103,7 +103,7 @@
 
         methods: {
             ...mapActions([
-                'updateData',
+                'updateDataset1',
             ]),
 
             fillData() {
@@ -143,7 +143,7 @@
 
             upgradDatabase(){
                 console.log('-- Upgrade Data --');
-                this.updateData(this.dataset1);
+                this.updateDataset1(this.dataset1);
             },
 
         },

@@ -15,11 +15,11 @@
 
         methods: {
             ...mapGetters([
-                'getData',
+                'getDataset1',
             ]),
 
             updateData(){
-                return this.getData();
+                return this.getDataset1();
             }
         },
 
@@ -40,8 +40,6 @@
                     dataset3.push(count);
                 }
             }
-
-            console.log(months);
 
             this.renderChart({
                 labels: months.reverse(),

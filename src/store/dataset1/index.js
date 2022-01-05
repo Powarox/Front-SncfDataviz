@@ -2,25 +2,35 @@
 export default {
     state() {
         return {
-            data: {},
+            dataset1: {},
+            dataset2: {},
         }
     },
 
     getters: {
-        getData(state) {
-            return state.data;
+        getDataset1(state) {
+            return state.dataset1;
+        },
+        getDataset2(state) {
+            return state.dataset2;
         },
     },
 
     actions: {
-        updateData({commit}, list) {
-            commit('UPDATEDATA', list);
+        updateDataset1({commit}, list) {
+            commit('UPDATEDATASET1', list);
+        },
+        updateDataset2({commit}, list) {
+            commit('UPDATEDATASET1', list);
         },
     },
 
     mutations: {
-        UPDATEDATA(state, list) {
-            state.data = list;
+        UPDATEDATASET1(state, list) {
+            state.dataset1 = list;
+        },
+        UPDATEDATASET2(state, list) {
+            state.dataset2 = list;
         },
     }
 }
