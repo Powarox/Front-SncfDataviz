@@ -72,7 +72,8 @@
                 info: null,
                 errored: false,
                 loading: true,
-                dataset: [],
+                dataset1: {},
+                dataset2: {},
 
                 global_train: 0,
                 // nb_in_time: 0,
@@ -101,11 +102,6 @@
                 'updateData',
             ]),
 
-            up(){
-                console.log('-- up --');
-                this.updateData(this.data);
-            },
-
             fillData() {
                 this.state.chartData = {
                     labels: ['label 1', 'Label 2', 'Label 3', 'Label 4', 'Label 5'],
@@ -113,21 +109,35 @@
                         {
                             backgroundColor: ['#E56B6F', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
                             data: [2, 5, 1, 4, 3]
-                        },
+                        },  // train à l'heure - train annulé - retard 15 - retard 30 - retard 60 
                     ]
                 }
             },
 
             GlobalTrainLate(){
-                for(let res in this.data){
-                    this.global_train += this.data[res]['nb_train_prevu'];
-                    this.nb_tot_ann += this.data[res]['nb_annulation'];
-                    this.nb_ret_dep += this.data[res]['nb_train_retard_depart'];
-                    this.nb_ret_arr += this.data[res]['nb_train_retard_arrivee'];
-                    this.nb_ret_s15 += this.data[res]['nb_train_retard_sup_15'];
-                    this.nb_ret_s30 += this.data[res]['nb_train_retard_sup_30'];
-                    this.nb_ret_s60 += this.data[res]['nb_train_retard_sup_60'];
+                for(let res in this.dataset1){
+                    this.global_train += this.dataset1[res]['nb_train_prevu'];
+                    this.nb_tot_ann += this.dataset1[res]['nb_annulation'];
+                    this.nb_ret_dep += this.dataset1[res]['nb_train_retard_depart'];
+                    this.nb_ret_arr += this.dataset1[res]['nb_train_retard_arrivee'];
+                    this.nb_ret_s15 += this.dataset1[res]['nb_train_retard_sup_15'];
+                    this.nb_ret_s30 += this.dataset1[res]['nb_train_retard_sup_30'];
+                    this.nb_ret_s60 += this.dataset1[res]['nb_train_retard_sup_60'];
                 }
+            },
+
+            addDataFromOtherAPI(){
+                for(let date in this.dataset1){
+                    for(let key in this.dataset2[date]){
+                        this.dataset1[date][key] = this.dataset2[date][key]
+                    }
+                }
+                console.log(this.dataset1);
+            },
+
+            upgradDatabase(){
+                console.log('-- Upgrade Data --');
+                this.updateData(this.dataset1);
             },
 
         },
@@ -175,7 +185,7 @@
                         }
                         else {
                             if(tmp !== ''){
-                                this.data[tmp] = {
+                                this.dataset1[tmp] = {
                                     'duree_moyenne' : duree_moyenne,
                                     'nb_annulation' : nb_annulation,
                                     'nb_train_prevu' : nb_train_prevu,
@@ -210,7 +220,8 @@
                         }
                     }
                     this.GlobalTrainLate();
-                    this.up();
+                    this.addDataFromOtherAPI();
+                    this.upgradDatabase();
                 })
                 .catch(error => {
                     console.log(error)
@@ -227,13 +238,13 @@
                     for(let res in results){
                         if(!stop){
                             if(results[res].fields['date'] === '2018-02'){
-                                this.data1[results[res].fields['date']] = {
+                                this.dataset2[results[res].fields['date']] = {
                                     'journees_perdues': results[res].fields['journees_perdues']
                                 }
                                 stop = true;
                             }
                             else {
-                                this.data1[results[res].fields['date']] = {
+                                this.dataset2[results[res].fields['date']] = {
                                     'journees_perdues': results[res].fields['journees_perdues']
                                 }
                             }
