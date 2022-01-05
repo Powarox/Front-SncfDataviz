@@ -20,18 +20,17 @@
             <router-view/>
         </div>
 
-        <div id="footer">
-            <p>Moriniere Robin 21606393</p>
-            <p>Mohamed Lamine Seck 21711412</p>
-        </div>
+        <Footer/>
     </div>
 </template>
 
 <script>
+    import Footer from './components/Footer.vue';
+
     export default {
         name: 'App',
         components: {
-
+            Footer
         }
     }
 </script>
@@ -90,14 +89,4 @@
         background: #FAE2E3;
     }
 
-/* --- Footer --- */
-    #footer {
-        color: #DDD;
-        background: #555;
-        padding: 20px;
-    }
-
-    #footer p {
-        margin: 0;
-    }
 </style>
