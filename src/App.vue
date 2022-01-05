@@ -33,12 +33,14 @@
 </template>
 
 <script>
+    import Api from './api/Api.vue';
     import Footer from './components/Footer.vue';
 
     export default {
         name: 'App',
+        mixins: [Api],
         components: {
-            Footer
+            Footer,
         }
     }
 </script>

@@ -109,12 +109,11 @@
             fillData() {
                 this.state.chartData = {
                     labels: ['A l\'heure', 'Annulés', 'Retard 15min', 'Retard 30min', 'Retard 60min'],
-                    title: 'okoko',
                     datasets: [
                         {
                             backgroundColor: ['#E56B6F', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
                             data: [this.nb_in_time, this.nb_tot_ann, this.nb_ret_s15, this.nb_ret_s30, this.nb_ret_s60]
-                        },  // train à l'heure - train annulé - retard 15 - retard 30 - retard 60
+                        },
                     ]
                 }
             },
