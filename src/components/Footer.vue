@@ -68,12 +68,9 @@
     }
 
     footer .content {
+        margin: 0 5%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    footer .content {
-        margin: 0 5%;
     }
 
     .line {
@@ -147,5 +144,40 @@
 
     .bottom p {
         margin: 0;
+    }
+
+    @media (max-width: 925px){
+        footer .content {
+            margin: 0 1%;
+        }
+    }
+
+    @media (max-width: 850px){
+        .navigation, .contact, .newsletter{
+            padding: 20px 10px;
+        }
+    }
+
+    @media (max-width: 785px){
+        footer .content {
+            margin: 0 15%;
+            grid-template-columns: 1fr;
+        }
+
+        .contact {
+            margin: 20px 0;
+        }
+    }
+
+    @media (max-width: 470px){
+        footer .content {
+            margin: 0 10%;
+        }
+    }
+
+    @media (max-width: 370px){
+        footer .content {
+            margin: 0 5%;
+        }
     }
 </style>
