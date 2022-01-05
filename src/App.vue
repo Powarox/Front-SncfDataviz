@@ -6,7 +6,7 @@
             <div>
                 Logo
                 <!-- <router-link to="/">Logo</router-link> -->
-                <!-- <img src="" alt="Logo">  -->
+                <!-- <img src="" alt="Logo">    // #0096C7 bleu color -->
             </div>
             <router-link to="/">Home</router-link>
             <router-link to="/Page">Page 1</router-link>

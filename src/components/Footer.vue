@@ -21,9 +21,9 @@
                     <h3>Contact information</h3>
                     <div class="line"></div>
                     <p><i class="fas fa-map-marker-alt"></i> Unicaen Campus 2 Côte de nacre. Boulevard Maréchal Juin 14032 Caen Cedex 5</p>
-                    <p><i class="far fa-envelope"></i> <a href="#">21711412@etu.unicaen.fr</a></p>
+                    <p><i class="far fa-envelope"></i> <a href="https://mail.google.com/" target="_blank">21711412@etu.unicaen.fr</a></p>
 
-                    <p><i class="far fa-envelope"></i> <a href="#">21606393@etu.unicaen.fr</a></p>
+                    <p><i class="far fa-envelope"></i> <a href="https://mail.google.com/" target="_blank">21606393@etu.unicaen.fr</a></p>
                 </div>
 
                 <div class="newsletter">

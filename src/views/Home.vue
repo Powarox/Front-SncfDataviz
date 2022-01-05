@@ -72,7 +72,7 @@
                 info: null,
                 errored: false,
                 loading: true,
-                data: [],
+                dataset: [],
 
                 global_train: 0,
                 // nb_in_time: 0,
@@ -217,6 +217,34 @@
                     this.errored = true
                 })
                 .finally(() => this.loading = false)
+
+            axios
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
+                .then(response => {
+                    let results = response.data.records;
+                    let stop = false;
+
+                    for(let res in results){
+                        if(!stop){
+                            if(results[res].fields['date'] === '2018-02'){
+                                this.data1[results[res].fields['date']] = {
+                                    'journees_perdues': results[res].fields['journees_perdues']
+                                }
+                                stop = true;
+                            }
+                            else {
+                                this.data1[results[res].fields['date']] = {
+                                    'journees_perdues': results[res].fields['journees_perdues']
+                                }
+                            }
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                })
+                .finally(() => this.loading1 = false)
         }
     }
 </script>

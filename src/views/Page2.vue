@@ -9,18 +9,13 @@
             <!-- <p>{{ this.data1 }}</p><br> -->
             <!-- <p>{{ this.data2 }}</p><br> -->
             <!-- <p>{{ this.data3 }}</p><br> -->
-            <p>{{ this.data4 }}</p><br>
-        </section>
-
-        <section>
-            <button @click="test2()">test</button>
+            <!-- <p>{{ this.data4 }}</p><br> -->
         </section>
     </div>
 </template>
 
 <script>
     import axios from "axios";
-    import { mapGetters } from 'vuex';
 
     export default {
         name: 'Page2',
@@ -28,52 +23,27 @@
             return {
                 info: null,
                 errored: false,
-
                 loading1: true,
                 loading2: true,
                 loading3: true,
                 loading4: true,
 
-                data1: [],
+                data1: {},
                 data2: [],
                 data3: [],
                 data4: {},
+                data5: {},
             }
         },
 
         methods: {
-            ...mapGetters([
-                'getFilter',
-            ]),
-
             test(){
-                let result = [];
-                let count = 0;
-                let tmp = '';
-
-                for(let i in this.data1){
-                    let date = this.data1[i]['date'];
-                    let spl = date.split('-');
-
-                    if(tmp === spl[0]){
-                        count += this.data1[i]['journees_perdues'];
-                    }
-                    else {
-                        if(tmp !== ''){
-                            result.push({
-                                'date': tmp,
-                                'journees_perdues': count
-                            });
-                        }
-                        count = this.data1[i]['journees_perdues'];
-                        tmp = spl[0];
+                for(let date in this.data4){
+                    for(let key in this.data1[date]){
+                        this.data4[date][key] = this.data1[date][key]
                     }
                 }
-                this.data1 = result;
-            },
-
-            test2(){
-                console.log('Filter here : ' + this.getFilter());
+                console.log(this.data4);
             }
         },
 
@@ -83,12 +53,23 @@
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
                 .then(response => {
                     let results = response.data.records;
-                    let newTab = {};
+                    let stop = false;
 
                     for(let res in results){
-                        newTab[res] = results[res].fields;
+                        if(!stop){
+                            if(results[res].fields['date'] === '2018-02'){
+                                this.data1[results[res].fields['date']] = {
+                                    'journees_perdues': results[res].fields['journees_perdues']
+                                }
+                                stop = true;
+                            }
+                            else {
+                                this.data1[results[res].fields['date']] = {
+                                    'journees_perdues': results[res].fields['journees_perdues']
+                                }
+                            }
+                        }
                     }
-                    this.data1 = newTab;
                 })
                 .catch(error => {
                     console.log(error)
@@ -101,17 +82,15 @@
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-chantiers&q=&rows=10')
                 .then(response => {
                     let results = response.data.records;
-                    let resTab = [];
 
                     for(let res in results){
-                        resTab.push({
+                        this.data2 .push({
                             'gare': results[res].fields.gare,
                             'libelle': results[res].fields.libelle,
                             'lattitude': results[res].fields.geo_point_2d[0],
                             'longitude': results[res].fields.geo_point_2d[1],
                         })
                     }
-                    this.data2 = resTab;
                 })
                 .catch(error => {
                     console.log(error)
@@ -124,10 +103,9 @@
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=liste-des-gares&q=&rows=10')
                 .then(response => {
                     let results = response.data.records;
-                    let resTab = [];
 
                     for(let res in results){
-                        resTab.push({
+                        this.data3.push({
                             'gare': results[res].fields.libelle,
                             'commune': results[res].fields.commune,
                             'departement': results[res].fields.departemen,
@@ -135,8 +113,6 @@
                             'longitude': results[res].fields.geo_point_2d[1],
                         })
                     }
-                    console.log(resTab);
-                    this.data3 = resTab;
                 })
                 .catch(error => {
                     console.log(error)
