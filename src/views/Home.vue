@@ -4,7 +4,7 @@
             <h1>Titre du projet ici </h1>
         </section>
 
-        <section class="block" id="elem1">
+        <section class="block" id="elem2">
             <div class="content">
                 <h3>Powered by AI</h3>
                 <h1>Advance Insides</h1>
@@ -20,7 +20,7 @@
             <img src="../assets/dashboard1.png" alt="">
         </section>
 
-        <section class="block" id="elem2">
+        <section class="block" id="elem1">
             <img src="../assets/dashboard2.png" alt="">
             <div class="content">
                 <h3>Powered by AI</h3>
@@ -36,7 +36,23 @@
             </div>
         </section>
 
-        <section class="block2" id="elem3">
+        <section class="block" id="elem2">
+            <div class="content">
+                <h3>Powered by AI</h3>
+                <h1>Advance Insides</h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+
+                <h4>Un petit quelque chose</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+
+                <h4>Un petit quelque chose</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+            </div>
+            <img src="../assets/carte.png" alt="">
+        </section>
+
+        <section class="block2" id="elem1">
             <div class="content2">
                 <h3>Smart Stats</h3>
                 <h1>Adances Insights</h1>
@@ -53,7 +69,7 @@
             </div>
         </section>
 
-        <section class="price" id="elem4">
+        <section class="price">
             <div class="card">
                 <i class="fab fa-vuejs"></i>
                 <h4>Stardard Plan</h4>
@@ -118,11 +134,7 @@
     }
 
     #elem1 {
-        background: #DDD;
-    }
-
-    #elem3 {
-        background: #DDD;
+        background: #EEE;
     }
 
     img {
@@ -190,11 +202,11 @@
 
     .price .card {
         width: 100%;
-
         padding: 20px;
         display: grid;
         justify-items: center;
         align-items: center;
+        background: #FFF;
     }
 
     .price .card h4 {

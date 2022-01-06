@@ -10,7 +10,7 @@
 
             <h2>Search _____________________ Q</h2>
 
-            <img src="../assets/img.png" alt="ici">
+            <img src="../assets/carte.png" alt="ici">
         </section>
 
         <section class="right">
