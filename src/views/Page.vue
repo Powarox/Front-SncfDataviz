@@ -209,17 +209,17 @@
 
     table {
         width: 100%;
-        border: 1px solid var(--main-grey-color)
+        border: 1px solid var(--main-grey-color);
     }
 
     td {
         width: 50%;
         height: 30px;
-        border: 1px solid var(--main-grey-color)
+        border: 1px solid var(--main-grey-color);
     }
 
     thead {
-        background-color: var(--main-grey-color)
+        background-color: var(--main-grey-color);
         color: var(--main-white-color);
     }
 
