@@ -134,7 +134,7 @@
     }
 
     #elem1 {
-        background: #EEE;
+        background: var(--main-white-color);
     }
 
     img {
@@ -144,7 +144,7 @@
     .img {
         width: 400px;
         height: 250px;
-        background: #FB565E;
+        background: var(--home-red-color);
     }
 
     .block {
@@ -166,7 +166,7 @@
         max-width: 400px;
         height: 300px;
         padding: 20px 50px;
-        background: #FB565E;
+        background: var(--home-red-color);
     }
 
     .block2 {
@@ -198,7 +198,7 @@
         margin-top: 20px;
         display: flex;
         justify-content: center;
-        box-shadow: 0 0 10px #6D6969;
+        box-shadow: 0 0 20px var(--home-shadow-color);
     }
 
     .price .card {
@@ -207,7 +207,7 @@
         display: grid;
         justify-items: center;
         align-items: center;
-        background: #FFF;
+        background: var(--main-white-color);
     }
 
     .price .card h4 {
@@ -216,7 +216,7 @@
     }
 
     .price .card i {
-        color: #FB565E;
+        color: var(--home-red-color);
         font-size: 50px;
     }
 
@@ -225,13 +225,13 @@
 
     .price .card h1 {
         margin: 0;
-        color: #FB565E;
+        color: var(--home-red-color);
         font-size: 50px;
     }
 
     .price .card span {
         margin: 15px;
-        color: #6D6969;
+        color: var(--home-grey-color);
     }
 
     .price .card .content {
@@ -247,16 +247,16 @@
     }
 
     #ultimate {
-        color: #FFFAF8;
-        background: #FB565E;
+        color: var(--home-white-color);
+        background: var(--home-red-color);
     }
 
     #ultimate h1 {
-        color: #FFFAF8;
+        color: var(--home-white-color);
     }
 
     #ultimate i {
-        color: #FFFAF8;
+        color: var(--home-white-color);
     }
 
     #ultimate .card .content p {

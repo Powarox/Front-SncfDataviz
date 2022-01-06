@@ -175,15 +175,15 @@
 
 /* ---- Map ----  */
     svg path {
-        fill: #E56B6F;
-        stroke: #FFF;
+        fill: var(--main-red-color);
+        stroke: var(--main-white-color);
         stroke-width: 1px;
         transition: fill 0.3s;
     }
 
     svg path:hover {
-        fill: #499F68;
-        stroke: #FFF;
+        fill: var(--main-green-color);
+        stroke: var(--main-white-color);
         stroke-width: 1px;
         transition: fill 0.3s;
     }
@@ -220,7 +220,7 @@
 
     thead {
         background-color: #333;
-        color: #fff;
+        color: var(--main-white-color);
     }
 
 
@@ -230,7 +230,7 @@
         padding: 10px;
         height: 30px;
         border-radius: 40px;
-        background: #2f3640;
+        background: var(--main-dark-blue-color);
     }
 
     .search-box:hover > .search-txt {
@@ -247,12 +247,11 @@
     }
 
     .search-btn {
-        color: #e84118;
-        /* float: right; */
+        color: var(--home-red-color);
         width: 40px;
         height: 30px;
         border-radius: 50%;
-        background: #2f3640;
+        background: var(--main-dark-blue-color);
         text-decoration: none;
         display: flex;
         justify-content: center;

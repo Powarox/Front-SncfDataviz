@@ -54,12 +54,12 @@
 
 <style lang="css" scoped>
     #footer {
-        color: #FFF;
-        background: #333;
+        color: var(--main-white-color);
+        background: var(--footer-grey-color); /* var(--main-dark-blue-color); */
     }
 
     a {
-        color: #E56B6F;
+        color: var(--main-red-color);
         text-decoration: none;
     }
 
@@ -76,7 +76,7 @@
     .line {
         width: 70px;
         height: 5px;
-        background: #E56B6F;
+        background: var(--main-red-color);
         margin-bottom: 30px;
     }
 
@@ -108,17 +108,17 @@
 
     .newsletter input {
         height: 30px;
-        border: 0.5px solid #DDD;
+        border: 0.5px solid var(--main-white-color);
         border-radius: 5px;
     }
 
     .newsletter button {
         height: 35px;
         margin: 0 10px;
-        border: 1px solid #E56B6F;
+        border: 1px solid var(--main-red-color);
         border-radius: 5px;
-        color: #EEE;
-        background: #E56B6F;
+        color: var(--main-white-color);
+        background: var(--main-red-color);
         font-weight: bold;
         transition: 0.5s;
         cursor: pointer;
@@ -127,23 +127,23 @@
     .newsletter i {
         margin: 0 5px;
         padding: 10px;
-        border: 2px solid #E56B6F;
+        border: 2px solid var(--main-red-color);
         border-radius: 50%;
-        color: #FFF;
-        background: #E56B6F;
+        color: var(--main-white-color);
+        background: var(--main-red-color);
         font-weight: bold;
         font-size: 25px;
         transition: 0.5s;
     }
 
     .newsletter button:hover {
-        background: #499F68;
-        border: 1px solid #499F68;
+        background: var(--main-green-color);
+        border: 1px solid var(--main-green-color);
     }
 
     .newsletter i:hover {
-        background: #499F68;
-        border: 2px solid #499F68;
+        background: var(--main-green-color);
+        border: 2px solid var(--main-green-color);
     }
 
 
@@ -151,7 +151,7 @@
         margin-top: 20px;
         padding: 30px;
         text-align: center;
-        border-top: 1px solid #CCC;
+        border-top: 1px solid var(--main-white-color);
     }
 
     .bottom p {

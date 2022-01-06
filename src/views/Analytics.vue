@@ -148,7 +148,7 @@
                     labels: ['A l\'heure', 'Annulés', 'Retard 15min', 'Retard 30min', 'Retard 60min'],
                     datasets: [
                         {
-                            backgroundColor: ['#E56B6F', '#348AF4', "#FFCF60", "#900C3E", "#499F68"],
+                            backgroundColor: ['#499F68', '#FFCF60', '#E56B6F', '#348AF4', '#900C3E'],
                             data: [data['nb_in_time'], data['nb_tot_ann'], data['nb_ret_s15'], data['nb_ret_s30'], data['nb_ret_s60']]
                         },
                     ]
@@ -234,7 +234,7 @@
         height: 175px;
         text-align: center;
         border-radius: 20px;
-        background: #FFF;
+        background: var(--main-white-color);
     }
 
     section div {

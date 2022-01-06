@@ -25,12 +25,12 @@
 
 <style lang="css" scoped>
     #slide_bar {
-        border-right: 2px solid #2c3e50;
-        /* background: linear-gradient(45deg, #e66465, #9198e5); */
+        border-right: 2px solid var(--main-dark-blue-color);
+        background: linear-gradient(45deg, var(--main-red-color), #9198e5);
     }
 
     h1 {
-        border-bottom: 2px solid #2c3e50;
+        border-bottom: 2px solid var(--main-dark-blue-color);
         margin-right: 40px;
     }
 
@@ -44,9 +44,9 @@
     .btn button {
         margin: 5px 5px;
         padding: 5px 7px;
-        color: #2c3e50;
-        background: #E56B6F;
-        border: 2px solid #E56B6F;
+        color: var(--main-dark-blue-color);
+        background: var(--main-red-color);
+        border: 2px solid var(--main-red-color);
         border-radius: 5px;
         font-weight: bold;
         cursor: pointer;
