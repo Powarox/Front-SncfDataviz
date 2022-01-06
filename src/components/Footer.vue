@@ -138,7 +138,7 @@
 
     .newsletter button:hover {
         background: #499F68;
-        border: 2px solid #499F68;
+        border: 1px solid #499F68;
     }
 
     .newsletter i:hover {

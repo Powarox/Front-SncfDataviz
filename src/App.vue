@@ -88,8 +88,6 @@
 
     .nav a:hover {
         border-bottom: 3px solid white;
-        /* border-radius: 10px;
-        background: #999; */
     }
 
     .nav #logo {
