@@ -1,7 +1,7 @@
 <script>
     import axios from "axios";
     import { mapActions } from 'vuex';
-    console.log('Requests Api Loading...');
+    console.log('Requests Api 1 Loading...');
 
     export default {
         name: 'Api',
@@ -59,7 +59,7 @@
             upgradDatabase(){
                 this.updateDatasets1(this.datasets1);
                 this.updateDatasets2(this.datasets2);
-                console.log('Requests Api Finished !');
+                console.log('Requests Api 1 Finished !');
             },
 
         },

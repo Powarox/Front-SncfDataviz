@@ -35,11 +35,12 @@
 
 <script>
     import Api from './api/Api.vue';
+    // import Api2 from './api/Api2.vue';
     import Footer from './components/Footer.vue';
 
     export default {
         name: 'App',
-        mixins: [Api],
+        mixins: [Api],  // [Api, Api2]
         components: {
             Footer,
         }
