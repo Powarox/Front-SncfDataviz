@@ -114,7 +114,7 @@
 
 <style lang="css" scoped>
     #home {
-
+        padding: 30px;
     }
 
     #elem1 {

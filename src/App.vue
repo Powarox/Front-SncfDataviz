@@ -148,7 +148,7 @@
 /* --- Main --- */
     .main {
         min-height: 500px;
-        padding: 30px;
+        /* padding: 30px; */
         background: #FAE2E3;
     }
 

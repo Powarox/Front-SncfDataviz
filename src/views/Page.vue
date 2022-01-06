@@ -69,6 +69,7 @@
 
 <style lang="css" scoped>
     #Page {
+        padding: 30px;
         display: grid;
         grid-template-columns: 1fr 1fr;
     }

@@ -6,7 +6,7 @@
             <div v-if="loading3">Chargement ... Liste des chatiers</div>
             <div v-if="loading4">Chargement ... Regularité Mensuelle</div>
             <button @click="test()">test</button>
-            <p>{{ this.data1 }}</p><br>
+            <!-- <p>{{ this.data1 }}</p><br> -->
             <!-- <p>{{ this.data2 }}</p><br> -->
             <!-- <p>{{ this.data3 }}</p><br> -->
             <!-- <p>{{ this.data4 }}</p><br> -->
@@ -218,7 +218,7 @@
 
 <style lang="css" scoped>
     #Page2 {
-
+        padding: 30px;
     }
 
     p {

@@ -16,7 +16,7 @@
 
 <style lang="css" scoped>
     #about {
-
+        padding: 30px;
     }
 
     p {

@@ -8,20 +8,15 @@
         <br><br>
 
         <section class='test'>
-            <!-- <BarChart/> -->
-            <LineChart/>
         </section>
     </div>
 </template>
 
 <script>
-    // import BarChart from '../components/BarChart.vue';
-    import LineChart from '../components/LineChart.vue';
 
     export default {
         name: 'Page2',
         components: {
-             LineChart
         },
         data() {
             return {
@@ -34,7 +29,7 @@
 
 <style lang="css" scoped>
     #Page2 {
-
+        padding: 30px;
     }
 
     p {

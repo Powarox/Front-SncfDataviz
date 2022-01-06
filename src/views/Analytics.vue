@@ -192,10 +192,11 @@
 
 <style lang="css" scoped>
     #analytics {
+        padding: 30px;
         display: grid;
         grid-template-columns: 1fr 5fr;
         grid-gap: 10px;
-        padding: 5px;
+        /* padding: 5px; */
     }
 
     p {
