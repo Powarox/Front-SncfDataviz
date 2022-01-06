@@ -51,6 +51,7 @@
     :root {
         --main-red-color: #E56B6F;
         --main-blue-color: #348AF4;
+        --main-grey-color: #333;
         --main-white-color: #FFF;
         --main-green-color: #499F68;
         --main-yellow-color: #FFCF60;
@@ -63,7 +64,7 @@
         --home-white-color: #FFFAF8;
         --home-shadow-color: #6D6969;
 
-        --footer-grey-color: #333;
+
     }
 
     #app {

@@ -55,7 +55,7 @@
 <style lang="css" scoped>
     #footer {
         color: var(--main-white-color);
-        background: var(--footer-grey-color); /* var(--main-dark-blue-color); */
+        background: var(--main-grey-color) /* var(--main-dark-blue-color); */
     }
 
     a {
