@@ -158,6 +158,7 @@
     .block .content {
         max-width: 450px;
         padding: 20px 50px;
+        text-align: justify;
     }
 
     .block .img {

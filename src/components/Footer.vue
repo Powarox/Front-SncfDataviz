@@ -120,6 +120,7 @@
         color: #EEE;
         background: #E56B6F;
         font-weight: bold;
+        transition: 0.5s;
         cursor: pointer;
     }
 
@@ -132,6 +133,17 @@
         background: #E56B6F;
         font-weight: bold;
         font-size: 25px;
+        transition: 0.5s;
+    }
+
+    .newsletter button:hover {
+        background: #499F68;
+        border: 2px solid #499F68;
+    }
+
+    .newsletter i:hover {
+        background: #499F68;
+        border: 2px solid #499F68;
     }
 
 

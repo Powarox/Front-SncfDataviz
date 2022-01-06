@@ -1,12 +1,12 @@
 <template>
     <div id="Page">
         <section class="left">
-            <!-- <div class="search-box">
+            <div class="search-box">
                 <input class="search-txt" type="text" name="" placeholder="Type To Search">
                 <a class="search-btn" href="#">
                     <i class="fas fa-search"></i>
                 </a>
-            </div> -->
+            </div>
             <svg xmlns="http://www.w3.org/2000/svg" xmln:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 620 600">
                 <g>
                     <a xlink:href="#" id="FR-A" xlink:title="Alsace" class="land">
@@ -182,7 +182,7 @@
     }
 
     svg path:hover {
-        fill: #3538d2;
+        fill: #499F68;
         stroke: #FFF;
         stroke-width: 1px;
         transition: fill 0.3s;
@@ -190,7 +190,6 @@
 
     .right {
         padding: 15px;
-        padding-top: 50px;
     }
 
     .right .list {
@@ -227,14 +226,11 @@
 
 /* --- Search Box --- */
     .search-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(0%, -100%);
-        background: #2f3640;
+        margin-bottom: 20px;
+        padding: 10px;
         height: 30px;
         border-radius: 40px;
-        padding: 10px;
+        background: #2f3640;
     }
 
     .search-box:hover > .search-txt {
@@ -252,7 +248,7 @@
 
     .search-btn {
         color: #e84118;
-        float: right;
+        /* float: right; */
         width: 40px;
         height: 30px;
         border-radius: 50%;
