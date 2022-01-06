@@ -103,11 +103,11 @@
 
         methods: {
             ...mapGetters([
-                'getDataset1', 'getDataset2',
+                'getDatasets1', 'getDatasets2',
             ]),
 
             fillData1() {
-                let data = this.getDataset1();
+                let data = this.getDatasets1();
                 let months = [];
                 let data1 = [];
                 let data2 = [];
@@ -143,7 +143,7 @@
             },
 
             fillData2() {
-                let data = this.getDataset2();
+                let data = this.getDatasets2();
                 this.state2.chartData = {
                     labels: ['A l\'heure', 'Annulés', 'Retard 15min', 'Retard 30min', 'Retard 60min'],
                     datasets: [
@@ -156,7 +156,7 @@
             },
 
             fillData3() {
-                let data = this.getDataset1();
+                let data = this.getDatasets1();
                 let months = [];
                 let data1 = [];
                 let data2 = [];

@@ -1,12 +1,12 @@
 import {createStore} from 'vuex'
 
-import dataset1 from './dataset1'
-import dataset2 from './dataset2'
+import datasets1 from './datasets1'
+import datasets3 from './datasets3'
 
 export const store = createStore({
     debug : true,
     modules: {
-        dataset1,
-        dataset2
+        datasets1,
+        datasets3
       },
  })

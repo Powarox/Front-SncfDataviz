@@ -10,15 +10,15 @@
                 info: null,
                 errored: false,
                 loading: true,
-                dataset1: {},
-                dataset2: {},
+                datasets1: {},
+                datasets2: {},
                 dataTmp: {},
             }
         },
 
         methods: {
             ...mapActions([
-                'updateDataset1', 'updateDataset2',
+                'updateDatasets1', 'updateDatasets2',
             ]),
 
             GlobalTrainLate(){
@@ -29,36 +29,36 @@
                 let val5 = 0;
                 let val6 = 0;
                 let val7 = 0;
-                for(let res in this.dataset1){
-                    val1 += this.dataset1[res]['nb_train_prevu'];
-                    val2 += this.dataset1[res]['nb_annulation'];
-                    val3 += this.dataset1[res]['nb_train_retard_depart'];
-                    val4 += this.dataset1[res]['nb_train_retard_arrivee'];
-                    val5 += this.dataset1[res]['nb_train_retard_sup_15'];
-                    val6 += this.dataset1[res]['nb_train_retard_sup_30'];
-                    val7 += this.dataset1[res]['nb_train_retard_sup_60'];
+                for(let res in this.datasets1){
+                    val1 += this.datasets1[res]['nb_train_prevu'];
+                    val2 += this.datasets1[res]['nb_annulation'];
+                    val3 += this.datasets1[res]['nb_train_retard_depart'];
+                    val4 += this.datasets1[res]['nb_train_retard_arrivee'];
+                    val5 += this.datasets1[res]['nb_train_retard_sup_15'];
+                    val6 += this.datasets1[res]['nb_train_retard_sup_30'];
+                    val7 += this.datasets1[res]['nb_train_retard_sup_60'];
                 }
-                this.dataset2['global_train'] = val1;
-                this.dataset2['nb_tot_ann'] = val2;
-                this.dataset2['nb_ret_dep'] = val3;
-                this.dataset2['nb_ret_arr'] = val4;
-                this.dataset2['nb_ret_s15'] = val5;
-                this.dataset2['nb_ret_s30'] = val6;
-                this.dataset2['nb_ret_s60'] = val7;
-                this.dataset2['nb_in_time'] = val1 - val2 - val4;
+                this.datasets2['global_train'] = val1;
+                this.datasets2['nb_tot_ann'] = val2;
+                this.datasets2['nb_ret_dep'] = val3;
+                this.datasets2['nb_ret_arr'] = val4;
+                this.datasets2['nb_ret_s15'] = val5;
+                this.datasets2['nb_ret_s30'] = val6;
+                this.datasets2['nb_ret_s60'] = val7;
+                this.datasets2['nb_in_time'] = val1 - val2 - val4;
             },
 
             addDataFromOtherAPI(){
-                for(let date in this.dataset1){
+                for(let date in this.datasets1){
                     for(let key in this.dataTmp[date]){
-                        this.dataset1[date][key] = this.dataTmp[date][key]
+                        this.datasets1[date][key] = this.dataTmp[date][key]
                     }
                 }
             },
 
             upgradDatabase(){
-                this.updateDataset1(this.dataset1);
-                this.updateDataset2(this.dataset2);
+                this.updateDatasets1(this.datasets1);
+                this.updateDatasets2(this.datasets2);
                 console.log('Requests Api Finished !');
             },
 
@@ -108,7 +108,7 @@
                         }
                         else {
                             if(tmp !== ''){
-                                this.dataset1[tmp] = {
+                                this.datasets1[tmp] = {
                                     'duree_moyenne' : duree_moyenne,
                                     'nb_annulation' : nb_annulation,
                                     'nb_train_prevu' : nb_train_prevu,
