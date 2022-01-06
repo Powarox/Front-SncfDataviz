@@ -192,9 +192,8 @@
 
 <style lang="css" scoped>
     #analytics {
-        padding: 30px;
         display: grid;
-        grid-template-columns: 1fr 5fr;
+        grid-template-columns: 230px 1fr;
         grid-gap: 10px;
         /* padding: 5px; */
     }
@@ -205,7 +204,12 @@
         text-align: justify;
     }
 
+    #slide_bar {
+        /* position: fixed; */
+    }
+
     .content {
+        padding: 30px;
         display: grid;
         grid-template-columns: 1fr;
         grid-gap: 15px;

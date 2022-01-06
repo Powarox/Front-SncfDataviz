@@ -1,10 +1,12 @@
 <template>
     <div id="home">
-        <section>
-            <h1>Titre du projet ici </h1>
+        <section class="title">
+            <img src="../assets/logo.png" alt="">
+            <h1>Dataviz SNCF</h1>
+            <img src="../assets/logo.png" alt="">
         </section>
 
-        <section class="block" id="elem2">
+        <section class="block" id="light">
             <div class="content">
                 <h3>Powered by AI</h3>
                 <h1>Advance Insides</h1>
@@ -17,11 +19,15 @@
                 <h4>Un petit quelque chose</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
             </div>
-            <img src="../assets/dashboard1.png" alt="">
+            <div class="images">
+                <img src="../assets/dashboard1.png" alt="">
+            </div>
         </section>
 
-        <section class="block" id="elem1">
-            <img src="../assets/dashboard2.png" alt="">
+        <section class="block">
+            <div class="images">
+                <img src="../assets/carte.png" alt="">
+            </div>
             <div class="content">
                 <h3>Powered by AI</h3>
                 <h1>Advance Insides</h1>
@@ -32,27 +38,11 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
 
                 <h4>Un petit quelque chose</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore agna aliqua. Ut enim ad minim veniam</p>
             </div>
         </section>
 
-        <section class="block" id="elem2">
-            <div class="content">
-                <h3>Powered by AI</h3>
-                <h1>Advance Insides</h1>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-
-                <h4>Un petit quelque chose</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-
-                <h4>Un petit quelque chose</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-            </div>
-            <img src="../assets/carte.png" alt="">
-        </section>
-
-        <section class="block2" id="elem1">
+        <section class="block2" id="light">
             <div class="content2">
                 <h3>Smart Stats</h3>
                 <h1>Adances Insights</h1>
@@ -115,6 +105,24 @@
                 </div>
             </div>
         </section>
+
+        <section class="block" id="light">
+            <div class="images">
+                <img src="../assets/dashboard2.png" alt="">
+            </div>
+            <div class="content">
+                <h3>Powered by AI</h3>
+                <h1>Advance Insides</h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+
+                <h4>Un petit quelque chose</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+
+                <h4>Un petit quelque chose</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -130,15 +138,23 @@
 
 <style lang="css" scoped>
     #home {
-        padding: 30px;
+        padding-top: 30px;
     }
 
-    #elem1 {
+    .title {
+        margin-bottom: 30px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        font-size: 25px;
+    }
+
+    .title h1 {
+        margin: 0 10px;
+    }
+
+    #light {
         background: var(--main-white-color);
-    }
-
-    img {
-        width: 400px;
     }
 
     .img {
@@ -152,6 +168,7 @@
         justify-content: center;
         justify-items: center;
         align-items: center;
+        flex-wrap: wrap;
         padding: 20px 0;
     }
 
@@ -161,12 +178,13 @@
         text-align: justify;
     }
 
-    .block .img {
-        width: 300px;
-        max-width: 400px;
-        height: 300px;
-        padding: 20px 50px;
-        background: var(--home-red-color);
+    .block .images  {
+        padding: 20px;
+    }
+
+    .block .images img {
+        width: 100%;
+        max-width: 500px;
     }
 
     .block2 {
@@ -184,6 +202,7 @@
         justify-content: center;
         justify-items: center;
         align-items: center;
+        flex-wrap: wrap;
     }
 
     .block2 .images img {
@@ -194,8 +213,7 @@
 
     .price {
         max-width: 900px;
-        margin: auto;
-        margin-top: 20px;
+        margin: 40px auto;
         display: flex;
         justify-content: center;
         box-shadow: 0 0 20px var(--home-shadow-color);
