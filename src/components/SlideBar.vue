@@ -1,7 +1,7 @@
 <template>
-    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
-
     <div id="slide_bar">
+        <Feedback @click="delFeed()"/>
+        
         <div class="slide">
             <h1>Filters</h1>
             <section class="btn">
@@ -12,7 +12,6 @@
                 <button @click="addFeed()">Filter 5</button>
             </section>
         </div>
-        <Feedback @click="delFeed()"/>
     </div>
 </template>
 

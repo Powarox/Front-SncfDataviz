@@ -1,5 +1,7 @@
 <template>
     <div id="home">
+        <Feedback @click="delFeed()"/>
+
         <section class="title">
             <img src="../assets/logo.png" alt="">
             <h1>Dataviz SNCF</h1>
@@ -107,7 +109,11 @@
         </section>
 
         <section class="paiement">
-            <button @click="addFeed()">Paiement</button>
+            <button @click="addFeed()">
+                <i class="fas fa-credit-card"></i> <i class="fab fa-cc-mastercard"></i> <i class="fab fa-cc-visa"></i>
+                Payment
+                <i class="fab fa-bitcoin"></i> <i class="fab fa-cc-paypal"></i>  <i class="fab fa-cc-apple-pay"></i>
+            </button>
         </section>
 
         <section class="block" id="light">
@@ -131,11 +137,28 @@
 </template>
 
 <script>
+    import Feedback from '../components/Feedback.vue';
+    import { mapActions, mapGetters } from 'vuex';
+
     export default {
         name: 'Home',
         components: {
-
+            Feedback,
         },
+        methods: {
+            ...mapActions([
+                'addFeedback', 'delFeedback',
+            ]),
+            ...mapGetters([
+                'getFeedback',
+            ]),
+            addFeed(){
+                this.addFeedback();
+            },
+            delFeed(){
+                this.delFeedback();
+            },
+        }
     }
 
 </script>
@@ -293,11 +316,23 @@
     }
 
     .paiement button {
-        padding: 10px;
+        margin-bottom: 40px;
+        padding: 20px;
         color: var(--main-white-color);
         background: var(--main-red-color);
         border: 2px solid var(--main-red-color);
         border-radius: 5px;
+        font-size: 25px;
+        font-weight: bold;
+        transition: 0.5s;
+        cursor: pointer;
+    }
+
+    .paiement button:hover {
+        color: var(--main-white-color);
+        background: var(--main-green-color);
+        border: 2px solid var(--main-green-color);
+        box-shadow: 0 0 50px var(--main-red-color);
     }
 
     @media (max-width: 1100px){
