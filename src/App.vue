@@ -63,8 +63,6 @@
         --home-grey-color: #6D6969;
         --home-white-color: #FFFAF8;
         --home-shadow-color: #6D6969;
-
-
     }
 
     #app {
@@ -162,11 +160,48 @@
         color: var(--main-white-color);
     }
 
-
 /* --- Main --- */
     .main {
         min-height: 500px;
         background: var(--main-body-color);
     }
 
+    @media (max-width: 940px){
+        .nav {
+            grid-template-columns: 1fr;
+        }
+        .sign, .login {
+            display: none;
+            width: 0;
+        }
+    }
+
+    @media (max-width: 625px){
+        .nav a {
+            margin: 0;
+            padding: 10px 20px;
+        }
+    }
+
+    @media (max-width: 525px){
+        .nav a {
+            padding: 10px 3%;
+        }
+    }
+
+    @media (max-width: 445px){
+        #logo, #logo img, #logo p {
+            display: none;
+        }
+
+        .nav #logo {
+            background: var(--main-red-color);
+        }
+    }
+
+    @media (max-width: 320px){
+        .nav a {
+            padding: 10px 1%;
+        }
+    }
 </style>

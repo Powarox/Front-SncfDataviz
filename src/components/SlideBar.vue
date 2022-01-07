@@ -45,7 +45,7 @@
     #slide_bar {
         padding: 10px 20px;
         color: var(--main-white-color);
-        background: linear-gradient(90deg, #555, var(--main-green-color));
+        background: linear-gradient(90deg, var(--main-grey-color), var(--main-green-color));
     }
 
     .slide {

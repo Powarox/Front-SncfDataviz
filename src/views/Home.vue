@@ -168,7 +168,7 @@
         justify-content: center;
         justify-items: center;
         align-items: center;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         padding: 20px 0;
     }
 
@@ -281,6 +281,24 @@
         margin: 0 20px;
         padding: 20px 0;
         border-top: 1px solid rgba(255, 237, 232, 0.3);
+    }
+
+    @media (max-width: 1100px){
+        .block .content {
+            padding: 20px 40px;
+        }
+    }
+
+    @media (max-width: 1000px){
+        .block .content {
+            padding: 20px 30px;
+        }
+    }
+
+    @media (max-width: 900px){
+        .block {
+            flex-wrap: wrap;
+        }
     }
 
 </style>

@@ -272,4 +272,20 @@
         width: 0px;
         transition: 0.8s;
     }
+
+    @media (max-width: 785px){
+        #Page {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 475px){
+        .search-txt:focus {
+            width: 200px;
+        }
+
+        .search-box:hover > .search-txt {
+            width: 200px;
+        }
+    }
 </style>
