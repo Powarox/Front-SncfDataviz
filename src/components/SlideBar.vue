@@ -5,38 +5,39 @@
         <div class="slide">
             <h1>Filters</h1>
             <section class="btn">
-                <button @click="show = !show">Filter 1</button>
-                <button @click="show = !show">Filter 2</button>
-                <button @click="show = !show">Filter 3</button>
-                <button @click="show = !show">Filter 4</button>
-                <button @click="show = !show">Filter 5</button>
+                <button @click="addFeed()">Filter 1</button>
+                <button @click="addFeed()">Filter 2</button>
+                <button @click="addFeed()">Filter 3</button>
+                <button @click="addFeed()">Filter 4</button>
+                <button @click="addFeed()">Filter 5</button>
             </section>
         </div>
-        <div class="feedback" @click="show = !show">
-            <transition name="fade">
-                <p v-if="show"><i class="fas fa-times"></i> Fonction en developpement</p>
-            </transition>
-        </div>
-        <div class="" v-if="show">
-            {{ check() }}
-        </div>
+        <Feedback @click="delFeed()"/>
     </div>
 </template>
 
 <script>
+    import Feedback from './Feedback.vue';
+    import { mapActions, mapGetters } from 'vuex';
+
     export default {
         name: "Slidebar",
-        data() {
-            return {
-                show: false,
-            }
+        components: {
+            Feedback,
         },
         methods: {
-            check() {
-                setTimeout(() => {
-                    this.show = false
-                }, 2500);
-            }
+            ...mapActions([
+                'addFeedback', 'delFeedback',
+            ]),
+            ...mapGetters([
+                'getFeedback',
+            ]),
+            addFeed(){
+                this.addFeedback();
+            },
+            delFeed(){
+                this.delFeedback();
+            },
         }
     }
 </script>
@@ -80,35 +81,4 @@
         background: var(--main-red-color);
         border: 2px solid var(--main-red-color);
     }
-
-    .feedback {
-        width: fit-content;
-        padding: 0 10px;
-        position: fixed;
-        top: 12%;
-        right: 2%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--main-white-color);
-        background: var(--main-dark-blue-color);
-        border-radius: 10px;
-        font-weight: bold;
-        font-family: sans-serif;
-        cursor: pointer;
-    }
-
-    .feedback i {
-        color: var(--main-red-color);
-        padding: 0 10px;
-    }
-
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity 0.5s;
-    }
-
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-    }
-
 </style>

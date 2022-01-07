@@ -1,29 +1,43 @@
 <template lang="html">
     <div id="feedback">
-        <div class="feedback" @click="show = !show">
+        <div class="feedback">
             <transition name="fade">
-                <p v-if="show"><i class="fas fa-times"></i> Fonction en developpement</p>
+                <p v-if="change"><i class="fas fa-times"></i> Fonction en developpement</p>
             </transition>
         </div>
-        <div class="" v-if="show">
+        <div v-if="change">
             {{ check() }}
         </div>
     </div>
 </template>
 
 <script>
+    import { mapGetters, mapActions } from 'vuex';
+
     export default {
         name: "Feedback",
-        data() {
-            return {
-                show: false,
-            }
-        },
         methods: {
+            ...mapActions([
+                'addFeedback', 'delFeedback',
+            ]),
+
+            del(){
+                this.delFeedback;
+            },
+
             check() {
                 setTimeout(() => {
-                    this.show = false
-                }, 2500);
+                    this.delFeedback();
+                }, 3500);
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'getFeedback',
+            ]),
+
+            change(){
+                return this.getFeedback;
             }
         }
     }

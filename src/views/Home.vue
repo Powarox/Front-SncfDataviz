@@ -106,6 +106,10 @@
             </div>
         </section>
 
+        <section class="paiement">
+            <button @click="addFeed()">Paiement</button>
+        </section>
+
         <section class="block" id="light">
             <div class="images">
                 <img src="../assets/dashboard2.png" alt="">
@@ -281,6 +285,19 @@
         margin: 0 20px;
         padding: 20px 0;
         border-top: 1px solid rgba(255, 237, 232, 0.3);
+    }
+
+    .paiement {
+        display: flex;
+        justify-content: center;
+    }
+
+    .paiement button {
+        padding: 10px;
+        color: var(--main-white-color);
+        background: var(--main-red-color);
+        border: 2px solid var(--main-red-color);
+        border-radius: 5px;
     }
 
     @media (max-width: 1100px){

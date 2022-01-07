@@ -11,19 +11,24 @@
                 <router-link to="/">Home</router-link>
                 <router-link to="/Analytics">Analytics</router-link>
                 <router-link to="/Page">Map</router-link>
-                <!-- <router-link to="/Page2">Page 2</router-link> -->
-                <!-- <router-link to="/Page3">Page 3</router-link> -->
                 <router-link to="/About">About</router-link>
             </div>
             <div class="login">
-                <div class="sign" id="in">
+                <div class="sign" id="in" @click="addFeed()">
                     Sign In
                 </div>
-                <div class="sign" id="up">
+                <div class="sign" id="up" @click="addFeed()">
                     Sign Up
                 </div>
             </div>
         </div>
+
+        <Feedback @click="delFeed()"/>
+
+        <div class="main">
+            <router-view/>
+        </div>
+
         <Footer/>
     </div>
 </template>
@@ -32,13 +37,29 @@
     import Api from './api/Api.vue';
     // import Api2 from './api/Api2.vue';
     import Footer from './components/Footer.vue';
+    import Feedback from './components/Feedback.vue';
+    import { mapActions, mapGetters } from 'vuex';
 
     export default {
         name: 'App',
         mixins: [Api],  // [Api, Api2]
         components: {
-            Footer,
+            Footer, Feedback,
         },
+        methods: {
+            ...mapActions([
+                'addFeedback', 'delFeedback',
+            ]),
+            ...mapGetters([
+                'getFeedback',
+            ]),
+            addFeed(){
+                this.addFeedback();
+            },
+            delFeed(){
+                this.delFeedback();
+            },
+        }
     }
 </script>
 
