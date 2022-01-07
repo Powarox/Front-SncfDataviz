@@ -24,11 +24,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="main">
-            <router-view/>
-        </div>
-
         <Footer/>
     </div>
 </template>
@@ -43,7 +38,7 @@
         mixins: [Api],  // [Api, Api2]
         components: {
             Footer,
-        }
+        },
     }
 </script>
 
