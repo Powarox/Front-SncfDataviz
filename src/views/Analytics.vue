@@ -6,37 +6,55 @@
             <section class="box item1">
                 <div class="headerBox">
                     <h3>Train Total</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    131 331 depuis 2018
+                    <div class="minibox">
+                        <h2>{{ this.data['global_train'] }} <span>(2018 - 2021)</span>  </h2>
+                    </div>
                 </div>
             </section>
 
             <section class="box item2">
                 <div class="headerBox">
                     <h3>Train en Retards</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    1 131 331 depuis 2018
+                    <div class="minibox">
+                        <h2>{{ this.data['nb_ret_dep'] }} <span>(2018 - 2021)</span>  </h2>
+                    </div>
                 </div>
             </section>
 
             <section class="box item3">
                 <div class="headerBox">
-                    <h3>Statistics Card</h3>
+                    <h3>Statistics Card <span>(retards)</span></h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
                     <div class="stats">
-                        <p>Nombre de train retards par tranche de minutes</p>
                         <div class="stats2">
-                            <div class="s1">
-                                34343
+                            <div class="item">
+                                <i class="fas fa-train"></i>
+                                <div class="it">
+                                    <span>15 min</span>
+                                    <h3>{{ this.data['nb_ret_s15'] }}</h3>
+                                </div>
                             </div>
-                            <div class="s2">
-                                54535
+                            <div class="item">
+                                <i class="fas fa-train"></i>
+                                <div class="it">
+                                    <span>30 min</span>
+                                    <h3>{{ this.data['nb_ret_s30'] }}</h3>
+                                </div>
                             </div>
-                            <div class="s3">
-                                35353
+                            <div class="item">
+                                <i class="fas fa-train"></i>
+                                <div class="it">
+                                    <span>60 min</span>
+                                    <h3>{{ this.data['nb_ret_s60'] }}</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -46,6 +64,7 @@
             <section class="box item4">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
                     <BarChart id="barChart" v-bind:chartData="state3.chartData"/>
@@ -55,6 +74,7 @@
             <section class="box item5">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content ">
                     <DoughnutChart id="doughnutChart" v-bind:chartData="state2.chartData"/>
@@ -73,6 +93,7 @@
             <section class="box item6">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
                     <LineChart id="lineChart" v-bind:chartData="state1.chartData"/>
@@ -82,6 +103,7 @@
             <section class="box item7">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
                     <div class="largeContent">
@@ -97,15 +119,17 @@
             <section class="box item8">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    1 131 331 depuis 2018
+                    <BarChart id="barChart" v-bind:chartData="state3.chartData"/>
                 </div>
             </section>
 
             <section class="box item9">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
                     1 131 331 depuis 2018
@@ -115,18 +139,20 @@
             <section class="box item10">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    <BarChart id="barChart" v-bind:chartData="state3.chartData"/>
+                    erogzjngrojnzorf
                 </div>
             </section>
 
             <section class="box item11">
                 <div class="headerBox">
                     <h3>Title</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    1 131 331 depuis 2018
+                    <LineChart id="lineChart" v-bind:chartData="state1.chartData"/>
                 </div>
             </section>
 
@@ -300,9 +326,10 @@
         background: #FFF;
     }
 
-    p {
-        /* text-align: justify;
-        text-indent: 2em; */
+    span {
+        color: var(--home-grey-color);
+        font-size: 12px;
+        font-weight: bold;
     }
 
     .item1 { grid-area: box1; }
@@ -350,7 +377,21 @@
     }
 
     .main .box .headerBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        justify-items: center;
+    }
 
+    .main .box .headerBox a {
+        padding: 0 5px;
+        color: var(--main-dark-blue-color);
+        cursor: pointer;
+        transition: 0.4s;
+    }
+
+    .main .box .headerBox a:hover {
+        color: var(--home-red-color);
     }
 
     .main .box .content {
@@ -359,13 +400,40 @@
         justify-items: center;
     }
 
+    .main .box .content .minibox h2 {
+        align-items: center;
+    }
+
     .main .box .content .stats {
+        width: 100%;
         display: flex;
         flex-direction: column;
     }
 
     .main .box .content .stats .stats2 {
         display: flex;
+        justify-content: space-between;
+    }
+
+    .main .box .content .stats .stats2 .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .main .box .content .stats .stats2 .item i {
+        margin-right: 10px;
+        padding: 10px 15px;
+        color: #FFF;
+        background: var(--main-red-color);
+        border-radius: 10px;
+        font-size: 25px;
+    }
+
+    .main .box .content .stats .stats2 .item .it {
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
         justify-content: space-between;
     }
 
