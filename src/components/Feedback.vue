@@ -1,10 +1,10 @@
 <template lang="html">
     <div id="feedback">
-        <div class="feedback">
-            <transition name="fade">
-                <p v-if="change"><i class="fas fa-times"></i> Fonction en developpement</p>
+            <transition name="fade" class="feedback">
+                <div v-if="change">
+                    <p><i class="fas fa-times"></i> En cours de developpement...</p>
+                </div>
             </transition>
-        </div>
         <div v-if="change">
             {{ check() }}
         </div>
@@ -28,7 +28,7 @@
             check() {
                 setTimeout(() => {
                     this.delFeedback();
-                }, 3500);
+                }, 3000);
             }
         },
         computed: {
@@ -58,6 +58,7 @@
         border-radius: 10px;
         font-weight: bold;
         font-family: sans-serif;
+        transition: 0.7s;
         cursor: pointer;
     }
 
@@ -66,11 +67,17 @@
         padding: 0 10px;
     }
 
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity 0.5s;
+    .fade-enter-active, {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .fade-leave-active  {
+        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
 
     .fade-enter, .fade-leave-to {
         opacity: 0;
+        transform: translateX(100px);
     }
+
 </style>
