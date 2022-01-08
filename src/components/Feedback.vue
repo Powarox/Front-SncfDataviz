@@ -2,7 +2,7 @@
     <div id="feedback">
             <transition name="fade" class="feedback">
                 <div v-if="change">
-                    <p><i class="fas fa-times"></i> En cours de developpement...</p>
+                    <p><i class="fas fa-times"></i> {{ this.getMessage }}</p>
                 </div>
             </transition>
         <div v-if="change">
@@ -33,7 +33,7 @@
         },
         computed: {
             ...mapGetters([
-                'getFeedback',
+                'getFeedback', 'getMessage',
             ]),
 
             change(){

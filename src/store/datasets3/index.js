@@ -5,6 +5,7 @@ export default {
             datasets3: {},
             datasets4: {},
             feedback: false,
+            message: '',
         }
     },
 
@@ -17,6 +18,9 @@ export default {
         },
         getFeedback(state) {
             return state.feedback;
+        },
+        getMessage(state) {
+            return state.message;
         }
     },
 
@@ -27,12 +31,15 @@ export default {
         updateDatasets4({commit}, list) {
             commit('UPDATEDATASETS4', list);
         },
+        addMessage({commit}, mess){
+            commit('ADDMESSAGE', mess);
+        },
         addFeedback({commit}){
             commit('ADDFEEDBACK');
         },
         delFeedback({commit}){
             commit('DELFEEDBACK');
-        }
+        },
     },
 
     mutations: {
@@ -41,6 +48,9 @@ export default {
         },
         UPDATEDATASETS4(state, list) {
             state.datasets4 = list;
+        },
+        ADDMESSAGE(state, mess) {
+            state.message = mess;
         },
         ADDFEEDBACK(state) {
             state.feedback = true;

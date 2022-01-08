@@ -49,12 +49,13 @@
         },
         methods: {
             ...mapActions([
-                'addFeedback', 'delFeedback',
+                'addMessage', 'addFeedback', 'delFeedback',
             ]),
             ...mapGetters([
-                'getFeedback',
+                'getFeedback', 'getMessage',
             ]),
             addFeed(){
+                this.addMessage('En cours de developpement...');
                 this.addFeedback();
             },
             delFeed(){
