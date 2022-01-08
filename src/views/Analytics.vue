@@ -5,7 +5,7 @@
         <section class="main">
             <section class="box item1">
                 <div class="headerBox">
-                    <h3>Train Total</h3>
+                    <h3>Total des Trains</h3>
                     <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
@@ -132,47 +132,71 @@
 
             <section class="box item8">
                 <div class="headerBox">
-                    <h3>Retards <span>(2019)</span></h3>
+                    <h3>Retard Moyen <span>(2019 - minutes)</span></h3>
                     <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    <!-- <BarChart id="barChart" v-bind:chartData="state4.chartData"/> -->
+                    <BarChart id="barChart" v-bind:chartData="state4.chartData"/>
                 </div>
             </section>
 
             <section class="box item9">
                 <div class="headerBox">
-                    <h3>Title</h3>
+                    <h3>Durée Moyenne Trajet </h3>
                     <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    1 131 331 depuis 2018
+                    <div class="minibox">
+                        <h2>{{ this.data['dur_moy_tra'].toLocaleString('fr-FR') }} <span>(Minutes)</span>  </h2>
+                    </div>
                 </div>
             </section>
 
             <section class="box item10">
                 <div class="headerBox">
-                    <h3>Title</h3>
+                    <h3>Total Train Annulée</h3>
                     <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    erogzjngrojnzorf
+                    <div class="minibox">
+                        <h2>{{ this.data['nb_tot_ann'].toLocaleString('fr-FR') }} <span>(2018 - 2021)</span>  </h2>
+                    </div>
                 </div>
             </section>
 
             <section class="box item11">
                 <div class="headerBox">
-                    <h3>Title</h3>
+                    <h3>Retards Moyen Départ</h3>
                     <a><i class="fas fa-ellipsis-v"></i></a>
                 </div>
                 <div class="content">
-                    <!-- <LineChart id="lineChart" v-bind:chartData="state5.chartData"/> -->
+                    <div class="minibox">
+                        <h2>{{ this.data['ret_moy_dep'].toLocaleString('fr-FR') }} <span>(Minutes)</span>  </h2>
+                    </div>
                 </div>
             </section>
 
-            <!-- <DoughnutChart id="doughnutChart" v-bind:chartData="state2.chartData"/>
-            <LineChart id="lineChart" v-bind:chartData="state1.chartData"/>
-            <BarChart id="barChart" v-bind:chartData="state3.chartData"/> -->
+            <section class="box item12">
+                <div class="headerBox">
+                    <h3>Retards Moyen Arrivée</h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
+                </div>
+                <div class="content">
+                    <div class="minibox">
+                        <h2>{{ this.data['ret_moy_arr'].toLocaleString('fr-FR') }} <span>(Minutes)</span>  </h2>
+                    </div>
+                </div>
+            </section>
+
+            <section class="box item13">
+                <div class="headerBox">
+                    <h3>Retard Moyen <span>(2018 - 2021)</span></h3>
+                    <a><i class="fas fa-ellipsis-v"></i></a>
+                </div>
+                <div class="content">
+                    <LineChart id="lineChart" v-bind:chartData="state5.chartData"/>
+                </div>
+            </section>
         </section>
     </div>
 </template>
@@ -231,8 +255,8 @@
             this.fillData1();
             this.fillData2();
             this.fillData3();
-            // this.fillData4();
-            // this.fillData5();
+            this.fillData4();
+            this.fillData5();
         },
 
         // updated() {
@@ -248,7 +272,6 @@
 
             fillData1() {
                 this.data2 = this.getDatasets1();
-                console.log(this.data2);
                 let data1 = [];
                 let data2 = [];
                 let data3 = [];
@@ -268,17 +291,17 @@
                         {
                               label: '60 min',
                               backgroundColor: '#499F68',
-                              // data: data3.reverse()
+                              data: data3.reverse()
                         },
                         {
                               label: '30 min',
                               backgroundColor: '#348AF4',
-                              // data: data2.reverse()
+                              data: data2.reverse()
                         },
                         {
                               label: '15 min',
                               backgroundColor: '#E56B6F',
-                              // data: data1.reverse()
+                              data: data1.reverse()
                         },
                     ]
                 }
@@ -286,13 +309,11 @@
 
             fillData2() {
                 this.data = this.getDatasets2();
-                console.log(this.data);
                 this.state2.chartData = {
                     datasets: [
                         {
                             backgroundColor: ['#499F68', '#348AF4', '#FFCF60', '#E56B6F', '#900C3E'],
-                            // data: [this.data['nb_in_time'], this.data['nb_ret_dep'], this.data['nb_ret_arr'], this.data['nb_tot_ann']]
-                            data: [3, 4, 2, 1]
+                            data: [this.data['nb_in_time'], this.data['nb_ret_dep'], this.data['nb_ret_arr'], this.data['nb_tot_ann']]
                         },
                     ]
                 }
@@ -304,7 +325,6 @@
                 let data2 = [];
 
                 for(let i in this.data2){
-                    // if(data[i]['journees_perdues']){
                     let spl = i.split('-');
                     if(spl[0] === '2019'){
                         months.push(i);
@@ -331,73 +351,63 @@
                 }
             },
 
-            // fillData4() {
-            //     let months = [];
-            //     let data1 = [];
-            //     let data2 = [];
-            //
-            //     for(let i in this.data2){
-            //         // if(data[i]['journees_perdues']){
-            //         let spl = i.split('-');
-            //         if(spl[0] === '2019'){
-            //             months.push(i);
-            //             data1.push(this.data2[i]['retard_moyen_arrivee']);
-            //             data2.push(this.data2[i]['retard_moyen_depart']);
-            //         }
-            //     }
-            //
-            //     this.state3.chartData = {
-            //         labels: months.reverse(),
-            //         datasets: [
-            //             {
-            //                   label: 'Départ',
-            //                   backgroundColor: '#499F68',
-            //                   data: data1.reverse()
-            //             },
-            //             {
-            //                   label: 'Arrivée',
-            //                   backgroundColor: '#348AF4',
-            //                   data: data2.reverse()
-            //             },
-            //         ]
-            //     }
-            // },
-            //
-            // fillData5() {
-            //     let data1 = [];
-            //     let data2 = [];
-            //     let data3 = [];
-            //
-            //     for(let i in this.data2){
-            //         let spl = i.split('-');
-            //         if(spl[0] === '2019'){
-            //             data1.push(this.data1[i]['duree_moyenne']);
-            //             data1.push(this.data2[i]['retard_moyen_arrivee']);
-            //             data2.push(this.data3[i]['retard_moyen_depart']);
-            //         }
-            //     }
-            //
-            //     this.state1.chartData = {
-            //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            //         datasets: [
-            //             {
-            //                   label: 'Trajet',
-            //                   backgroundColor: '#499F68',
-            //                   // data: data3.reverse()
-            //             },
-            //             {
-            //                   label: 'Arrviée',
-            //                   backgroundColor: '#FFCF60',
-            //                   // data: data2.reverse()
-            //             },
-            //             {
-            //                   label: 'Depart',
-            //                   backgroundColor: '#E56B6F',
-            //                   // data: data1.reverse()
-            //             },
-            //         ]
-            //     }
-            // },
+            fillData4() {
+                let months = [];
+                let data1 = [];
+                let data2 = [];
+                for(let i in this.data2){
+                    let spl = i.split('-');
+                    if(spl[0] === '2019'){
+                        months.push(i);
+                        data1.push(this.data2[i]['retard_moyen_arrivee']);
+                        data2.push(this.data2[i]['retard_moyen_depart']);
+                    }
+                }
+
+                this.state4.chartData = {
+                    labels: months.reverse(),
+                    datasets: [
+                        {
+                              label: 'Départ',
+                              backgroundColor: '#E56B6F',
+                              data: data1.reverse()
+                        },
+                        {
+                              label: 'Arrivée',
+                              backgroundColor: '#348AF4',
+                              data: data2.reverse()
+                        },
+                    ]
+                }
+            },
+
+            fillData5() {
+                let months = [];
+                let data1 = [];
+                let data2 = [];
+
+                for(let i in this.data2){
+                    months.push(i);
+                    data1.push(this.data2[i]['retard_moyen_arrivee']);
+                    data2.push(this.data2[i]['retard_moyen_depart']);
+                }
+
+                this.state5.chartData = {
+                    labels: months.reverse(),
+                    datasets: [
+                        {
+                              label: 'Départ',
+                              backgroundColor: '#FFCF60',
+                              data: data2.reverse()
+                        },
+                        {
+                              label: 'Arrviée',
+                              backgroundColor: '#348AF4',
+                              data: data1.reverse()
+                        },
+                    ]
+                }
+            },
         },
     }
 </script>
@@ -427,6 +437,8 @@
     .item9 { grid-area: box6; }
     .item10 { grid-area: box7; }
     .item11 { grid-area: box8; }
+    .item12 { grid-area: box9; }
+    .item13 { grid-area: box10; }
 
     .main {
         padding: 30px;
@@ -436,7 +448,9 @@
             'box1 box1 box1 box2 box2 box2 lin1 lin1 lin1 lin1 lin1 lin1'
             'box3 box3 box3 lin2 lin2 lin2 lin2 lin2 lin2 box4 box4 box4'
             'larg larg larg larg larg larg box5 box5 box5 box6 box6 box6'
-            'larg larg larg larg larg larg box7 box7 box7 box8 box8 box8';
+            'larg larg larg larg larg larg box5 box5 box5 box7 box7 box7'
+            'larg larg larg larg larg larg box8 box8 box8 box10 box10 box10'
+            'larg larg larg larg larg larg box9 box9 box9 box10 box10 box10';
         grid-gap: 20px;
         background: #FFF;
     }

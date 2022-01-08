@@ -12,7 +12,6 @@
                 <router-link to="/Analytics">Analytics</router-link>
                 <router-link to="/Map">Map</router-link>
                 <router-link to="/About">About</router-link>
-                <router-link to="/Page2">About</router-link>
             </div>
             <div class="login">
                 <div class="sign" id="in" @click="addFeed()">

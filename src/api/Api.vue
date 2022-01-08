@@ -22,6 +22,7 @@
             ]),
 
             GlobalTrainLate(){
+                let count = 0;
                 let val1 = 0;
                 let val2 = 0;
                 let val3 = 0;
@@ -29,7 +30,14 @@
                 let val5 = 0;
                 let val6 = 0;
                 let val7 = 0;
+                let moy1 = 0;
+                let moy2 = 0;
+                let moy3 = 0;
+                let moy4 = 0;
+                let moy5 = 0;
+                let moy6 = 0;
                 for(let res in this.datasets1){
+                    count += 1;
                     val1 += this.datasets1[res]['nb_train_prevu'];
                     val2 += this.datasets1[res]['nb_annulation'];
                     val3 += this.datasets1[res]['nb_train_retard_depart'];
@@ -37,6 +45,12 @@
                     val5 += this.datasets1[res]['nb_train_retard_sup_15'];
                     val6 += this.datasets1[res]['nb_train_retard_sup_30'];
                     val7 += this.datasets1[res]['nb_train_retard_sup_60'];
+                    moy1 =+ this.datasets1[res]['duree_moyenne'];
+                    moy2 =+ this.datasets1[res]['retard_moyen_arrivee'];
+                    moy3 =+ this.datasets1[res]['retard_moyen_depart'];
+                    moy4 =+ this.datasets1[res]['retard_moyen_tous_trains_arrivee'];
+                    moy5 =+ this.datasets1[res]['retard_moyen_tous_trains_depart'];
+                    moy6 =+ this.datasets1[res]['retard_moyen_trains_retard_sup15'];
                 }
                 this.datasets2['global_train'] = val1;
                 this.datasets2['nb_tot_ann'] = val2;
@@ -46,6 +60,12 @@
                 this.datasets2['nb_ret_s30'] = val6;
                 this.datasets2['nb_ret_s60'] = val7;
                 this.datasets2['nb_in_time'] = val1 - val2 - val4;
+                this.datasets2['dur_moy_tra'] = moy1 / count;
+                this.datasets2['ret_moy_arr'] = moy2 / count;
+                this.datasets2['ret_moy_dep'] = moy3 / count;
+                this.datasets2['ret_moy_s15'] = moy6 / count;
+                this.datasets2['ret_moy_all_arr'] = moy4 / count;
+                this.datasets2['ret_moy_all_dep'] = moy5 / count;
             },
 
             addDataFromOtherAPI(){
@@ -58,7 +78,7 @@
 
             upgradDatabase(){
                 this.delLoading();
-                this.addMessage('Load ✔');
+                this.addMessage('Load Success ✔');
                 this.addFeedback();
                 this.updateDatasets1(this.datasets1);
                 this.updateDatasets2(this.datasets2);
@@ -128,9 +148,9 @@
                                     'nb_train_retard_sup_60' : nb_train_retard_sup_60,
                                     'retard_moyen_arrivee' : retard_moyen_arrivee / count,
                                     'retard_moyen_depart' : retard_moyen_depart / count,
-                                    'retard_moyen_tous_trains_arrivee' : retard_moyen_tous_trains_arrivee,
-                                    'retard_moyen_tous_trains_depart' : retard_moyen_tous_trains_depart,
-                                    'retard_moyen_trains_retard_sup15' : retard_moyen_trains_retard_sup15,
+                                    'retard_moyen_tous_trains_arrivee' : retard_moyen_tous_trains_arrivee / count,
+                                    'retard_moyen_tous_trains_depart' : retard_moyen_tous_trains_depart / count,
+                                    'retard_moyen_trains_retard_sup15' : retard_moyen_trains_retard_sup15 / count,
                                 }
                             }
                             count = 1;
