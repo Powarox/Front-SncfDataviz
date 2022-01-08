@@ -1,5 +1,7 @@
 <template lang="html">
     <div id="footer">
+        <Feedback @click="delFeed()"/>
+
         <footer>
             <section class="content">
                 <div class="navigation">
@@ -31,7 +33,7 @@
                     <div class="line"></div>
                     <div class="form">
                         <input type="text" name="" placeholder="Your email">
-                        <button type="submit" name="button">Subscribe</button>
+                        <button @click="addFeed()">Subscribe</button>
                     </div>
                     <p>Connect : </p>
                     <a href="https://github.com/Powarox2159/Dataviz-Sncf" target="_blank"><i class="ball fab fa-instagram"></i></a>
@@ -50,7 +52,22 @@
     import { mapActions, mapGetters } from 'vuex';
 
     export default {
-        name: 'Footer'
+        name: 'Footer',
+        methods: {
+            ...mapActions([
+                'addMessage', 'addFeedback', 'delFeedback',
+            ]),
+            ...mapGetters([
+                'getFeedback', 'getMessage',
+            ]),
+            addFeed(){
+                this.addMessage('En cours de developpement...');
+                this.addFeedback();
+            },
+            delFeed(){
+                this.delFeedback();
+            },
+        }
     }
 </script>
 

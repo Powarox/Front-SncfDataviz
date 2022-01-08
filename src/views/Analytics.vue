@@ -341,10 +341,9 @@
             //         let spl = i.split('-');
             //         if(spl[0] === '2019'){
             //             months.push(i);
-            //             data1.push(this.data2[i]['nb_train_retard_depart']);
-            //             data2.push(this.data2[i]['nb_train_retard_arrivee']);
+            //             data1.push(this.data2[i]['retard_moyen_arrivee']);
+            //             data2.push(this.data2[i]['retard_moyen_depart']);
             //         }
-            //
             //     }
             //
             //     this.state3.chartData = {
@@ -372,9 +371,9 @@
             //     for(let i in this.data2){
             //         let spl = i.split('-');
             //         if(spl[0] === '2019'){
-            //             data1.push(this.data2[i]['nb_train_retard_sup_15']);
-            //             data2.push(this.data2[i]['nb_train_retard_sup_30']);
-            //             data3.push(this.data2[i]['nb_train_retard_sup_60']);
+            //             data1.push(this.data1[i]['duree_moyenne']);
+            //             data1.push(this.data2[i]['retard_moyen_arrivee']);
+            //             data2.push(this.data3[i]['retard_moyen_depart']);
             //         }
             //     }
             //
@@ -382,17 +381,17 @@
             //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
             //         datasets: [
             //             {
-            //                   label: '60 min',
+            //                   label: 'Trajet',
             //                   backgroundColor: '#499F68',
             //                   // data: data3.reverse()
             //             },
             //             {
-            //                   label: '30 min',
-            //                   backgroundColor: '#348AF4',
+            //                   label: 'Arrviée',
+            //                   backgroundColor: '#FFCF60',
             //                   // data: data2.reverse()
             //             },
             //             {
-            //                   label: '15 min',
+            //                   label: 'Depart',
             //                   backgroundColor: '#E56B6F',
             //                   // data: data1.reverse()
             //             },

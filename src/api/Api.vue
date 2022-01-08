@@ -69,6 +69,7 @@
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
                 .then(response => {
                     let results = response.data.records;
+                    let count = 0;
                     let tmp = '';
 
                     let duree_moyenne = 0;
@@ -90,6 +91,7 @@
                     for(let res in results){
                         let date = results[res].fields.date;
                         if(tmp === date){
+                            count += 1;
                             duree_moyenne += results[res].fields.duree_moyenne;
                             nb_annulation += results[res].fields.nb_annulation;
                             nb_train_prevu += results[res].fields.nb_train_prevu;
@@ -109,7 +111,7 @@
                         else {
                             if(tmp !== ''){
                                 this.datasets1[tmp] = {
-                                    'duree_moyenne' : duree_moyenne,
+                                    'duree_moyenne' : duree_moyenne / count,
                                     'nb_annulation' : nb_annulation,
                                     'nb_train_prevu' : nb_train_prevu,
                                     'nb_train_retard_depart' : nb_train_retard_depart,
@@ -117,13 +119,14 @@
                                     'nb_train_retard_sup_15' : nb_train_retard_sup_15,
                                     'nb_train_retard_sup_30' : nb_train_retard_sup_30,
                                     'nb_train_retard_sup_60' : nb_train_retard_sup_60,
-                                    'retard_moyen_arrivee' : retard_moyen_arrivee,
-                                    'retard_moyen_depart' : retard_moyen_depart,
+                                    'retard_moyen_arrivee' : retard_moyen_arrivee / count,
+                                    'retard_moyen_depart' : retard_moyen_depart / count,
                                     'retard_moyen_tous_trains_arrivee' : retard_moyen_tous_trains_arrivee,
                                     'retard_moyen_tous_trains_depart' : retard_moyen_tous_trains_depart,
                                     'retard_moyen_trains_retard_sup15' : retard_moyen_trains_retard_sup15,
                                 }
                             }
+                            count = 1;
                             duree_moyenne = results[res].fields.duree_moyenne;
                             nb_annulation = results[res].fields.nb_annulation;
                             nb_train_prevu = results[res].fields.nb_train_prevu;
