@@ -1,5 +1,5 @@
 <template>
-    <div id="Page">
+    <div id="Map">
         <section class="left">
             <div class="search-box">
                 <input class="search-txt" type="text" name="" placeholder="Type To Search">
@@ -151,12 +151,12 @@
 
 <script>
     export default {
-        name: 'Page',
+        name: 'Map',
     }
 </script>
 
 <style lang="css" scoped>
-    #Page {
+    #Map {
         padding: 30px;
         display: grid;
         grid-template-columns: 1fr 1fr;

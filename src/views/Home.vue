@@ -10,16 +10,15 @@
 
         <section class="block" id="light">
             <div class="content">
-                <h3>Powered by AI</h3>
-                <h1>Advance Insides</h1>
+                <h3>Vuejs IHM</h3>
+                <h1>Présentation du projet</h1>
+                <p>Dans le cadre notre Master 2 d'informatique nous avons eu pour objectif de réaliser une application, dans laquel ne devions mettre en pratique toute nos connaissance acquise au cours du module d'IHM.</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <h4>Réalisation</h4>
+                <p>Pour réaliser cette application nous devions aussi utiliser des données fournies par une API quelconque, ainsi que le framework Vuejs pour la partie developpement.</p>
 
-                <h4>Un petit quelque chose</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-
-                <h4>Un petit quelque chose</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <h4>Quelques précisions</h4>
+                <p>L'application que nous devons créer devra contenir plusieurs interfaces de visualisation tels que des tableaux, des maps ou encore des graphs. Le but est d'obtenir une application consistente, ayant un obejctif et qui soit facilement utilisable et utiles.</p>
             </div>
             <div class="images">
                 <img src="../assets/dashboard1.png" alt="">
@@ -31,16 +30,15 @@
                 <img src="../assets/carte.png" alt="">
             </div>
             <div class="content">
-                <h3>Powered by AI</h3>
-                <h1>Advance Insides</h1>
+                <h3>Vuejs IHM</h3>
+                <h1>Developpement</h1>
+                <p>Voici quelques informations utiles qui vous permettrons de mieux comprendre notre application, et donc de savourer votre expérience parmi nous. 😉</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                <h4>Interface</h4>
+                <p>Notre application est constitué de plusieur page, nous retrevons tout d'abord la page Home. Ensuite nous avons la page Analytics qui regroupe plusieurs visualisation liée au retard des train. En troisième nous avons une page Map en cours de developpement où l'on peut retrouver une carte de la France. Pour finir nous avons aussi une page About </p>
 
-                <h4>Un petit quelque chose</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-
-                <h4>Un petit quelque chose</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore agna aliqua. Ut enim ad minim veniam</p>
+                <h4>Données utilisées</h4>
+                <p>Pour construire cette application nous avons choisi d'utiliser des données provenant de l'API de la SNCF. Les données que nous récupérons correspondent aux régularités mensuelles des trains.</p>
             </div>
         </section>
 
@@ -110,9 +108,7 @@
 
         <section class="paiement">
             <button @click="addFeed()">
-                <i class="fas fa-credit-card"></i> <i class="fab fa-cc-mastercard"></i> <i class="fab fa-cc-visa"></i>
-                Payment
-                <i class="fab fa-bitcoin"></i> <i class="fab fa-cc-paypal"></i>  <i class="fab fa-cc-apple-pay"></i>
+                <i class="fab fa-bitcoin"></i> Paiement <i class="fab fa-bitcoin"></i>
             </button>
         </section>
 
@@ -203,6 +199,10 @@
         max-width: 450px;
         padding: 20px 50px;
         text-align: justify;
+    }
+
+    .block .content p {
+        text-indent: 2em;
     }
 
     .block .images  {

@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Analytics from '../views/Analytics.vue';
-
+import Map from '../views/Map.vue';
 import About from '../views/About.vue';
-import Page from '../views/Page.vue';
+
 import Page2 from '../views/Page2.vue';
 import Page3 from '../views/Page3.vue';
 
@@ -27,19 +27,19 @@ const routes = [
         }
     },
     {
+        path: '/Map',
+        name: 'Map',
+        component: Map,
+        meta: {
+            title: 'Map',
+        }
+    },
+    {
         path: '/About',
         name: 'About',
         component: About,
         meta: {
             title: 'About',
-        }
-    },
-    {
-        path: '/Page',
-        name: 'Page',
-        component: Page,
-        meta: {
-            title: 'Page 1',
         }
     },
     {
