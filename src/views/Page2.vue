@@ -5,9 +5,9 @@
             <div v-if="loading2">Chargement ... Liste des gares</div>
             <div v-if="loading3">Chargement ... Liste des chatiers</div>
             <div v-if="loading4">Chargement ... Regularité Mensuelle</div>
-            <button @click="test()">test</button>
-            <!-- <p>{{ this.data1 }}</p><br> -->
-            <!-- <p>{{ this.data2 }}</p><br> -->
+            <button @click="test2()">test</button>
+            <p>{{ this.data }}</p><br>
+            <p>{{ this.data1b }}</p><br>
             <!-- <p>{{ this.data3 }}</p><br> -->
             <!-- <p>{{ this.data4 }}</p><br> -->
         </section>
@@ -28,7 +28,9 @@
                 loading3: true,
                 loading4: true,
 
+                data: {},
                 data1: {},
+                data1b: {},
                 data2: [],
                 data3: [],
                 data4: {},
@@ -50,10 +52,50 @@
                     }
                 }
                 console.log(this.data4);
+            },
+
+            test2(){
+                let result = {};
+                let count = 0;
+                let tmp = '';
+                for(let i in this.data){
+                    let date = this.data[i]['date'];
+                    let spl = date.split('-');
+                    if(tmp === spl[0]){
+                        count += this.data[i]['journees_perdues'];
+                    }
+                    else {
+                        if(tmp !== ''){
+                            result[tmp] = count;
+                        }
+                        count = this.data[i]['journees_perdues'];
+                        tmp = spl[0];
+                    }
+                }
+                console.log(this.data);
+                console.log(result);
+                this.data1b = result
             }
         },
 
         mounted () {
+            axios
+                .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')
+                .then(response => {
+                    let results = response.data.records;
+                    let newTab = {};
+                    for(let res in results){
+                        newTab[res] = results[res].fields;
+                    }
+                    this.data = newTab;
+                    // console.log(newTab);
+                })
+                .catch(error => {
+                    console.log(error)
+                    this.errored = true
+                })
+                .finally(() => this.loading = false)
+
             // Get Mouvement sociaux
             axios
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=mouvements-sociaux-depuis-1994&q=&rows=-1&sort=date')

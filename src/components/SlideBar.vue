@@ -1,7 +1,7 @@
 <template>
     <div id="slide_bar">
         <Feedback @click="delFeed()"/>
-        
+
         <div class="slide">
             <h1>Filters</h1>
             <section class="btn">
@@ -45,7 +45,9 @@
     #slide_bar {
         padding: 10px 20px;
         color: var(--main-white-color);
-        background: linear-gradient(90deg, var(--main-grey-color), var(--main-green-color));
+        background: #666;
+        background: linear-gradient(0deg, #555, #333);
+        /* background: linear-gradient(90deg, var(--main-grey-color), var(--main-green-color)); */
     }
 
     .slide {
