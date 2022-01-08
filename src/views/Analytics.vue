@@ -80,7 +80,7 @@
                     <div class="dougCard">
                         <DoughnutChart id="doughnutChart" v-bind:chartData="state2.chartData"/>
                         <div class="dougStats">
-                            <h4>explication</h4>
+                            <h4>Description</h4>
                             <div class="dougList">
                                 <div class="item">
                                     <span><i class="fas fa-square" id="green_box"></i> : A l'heure</span>
@@ -567,24 +567,87 @@
         text-indent: 2em;
     }
 
-
-
-
     #green_box { color: var(--main-green-color); }
     #red_box { color: var(--main-red-color); }
     #blue_box { color: var(--main-blue-color); }
     #yellow_box { color: var(--main-yellow-color); }
-
-
-    #barChart {
+    #barChart, #lineChart, #doughnutChart {
         width: 260px;
     }
 
-    #lineChart {
-        width: 260px;
+    @media (max-width: 1500px){
+        #barChart, #lineChart, #doughnutChart {
+            width: 240px;
+        }
     }
 
-    #doughnutChart {
-        width: 260px;
+    @media (max-width: 1400px){
+        #barChart, #lineChart, #doughnutChart {
+            width: 220px;
+        }
+    }
+
+    @media (max-width: 1300px){
+        #barChart, #lineChart, #doughnutChart {
+            width: 200px;
+        }
+    }
+
+    @media (max-width: 1250px){
+        .main {
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-areas:
+                'box3 box3 box3 lin1 lin1 lin1 lin1 lin1 lin1'
+                'lin2 lin2 lin2 lin2 lin2 lin2 box4 box4 box4'
+                'box1 box1 box1 box5 box5 box5 box6 box6 box6'
+                'box2 box2 box2 box5 box5 box5 box7 box7 box7'
+                'larg larg larg larg larg larg box10 box10 box10'
+                'larg larg larg larg larg larg box8 box8 box8'
+                'larg larg larg larg larg larg box9 box9 box9';
+        }
+    }
+
+    @media (max-width: 1100px){
+        .main {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-areas:
+                'lin1 lin1 lin1 lin1 lin1 lin1'
+                'box3 box3 box3 box4 box4 box4'
+                'lin2 lin2 lin2 lin2 lin2 lin2'
+                'box1 box1 box1 box2 box2 box2'
+                'box6 box6 box6 box7 box7 box7'
+                'box5 box5 box5 box8 box8 box8'
+                'box5 box5 box5 box8 box8 box8'
+                'box9 box9 box9 box10 box10 box10'
+                'larg larg larg larg larg larg'
+                'larg larg larg larg larg larg'
+                'larg larg larg larg larg larg';
+        }
+    }
+
+    @media (max-width: 850px){
+        #analytics {
+            grid-template-columns: 1fr;
+        }
+        #slide_bar {
+            display: none;
+        }
+    }
+
+    @media (max-width: 540px){
+        .main {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+    @media (max-width: 490px){
+        .main .box .content .stats .stats2{
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        .main .box .content .dougCard {
+            flex-wrap: wrap;
+        }
     }
 </style>

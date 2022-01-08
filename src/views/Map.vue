@@ -102,7 +102,7 @@
         </section>
 
         <section class="right">
-            <h3>Description title</h3>
+            <h3>En Developpement</h3>
 
             <div class="text">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
@@ -273,8 +273,9 @@
         transition: 0.8s;
     }
 
+
     @media (max-width: 785px){
-        #Page {
+        #Map {
             grid-template-columns: 1fr;
         }
     }

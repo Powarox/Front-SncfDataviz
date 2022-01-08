@@ -117,15 +117,15 @@
                 <img src="../assets/dashboard2.png" alt="">
             </div>
             <div class="content">
-                <h3>Powered by AI</h3>
-                <h1>Advance Insides</h1>
+                <h3>Vuejs IHM</h3>
+                <h1>En Developpement</h1>
 
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
 
-                <h4>Un petit quelque chose</h4>
+                <h4>Lorem ipsum</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
 
-                <h4>Un petit quelque chose</h4>
+                <h4>Lorem ipsum</h4>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
             </div>
         </section>
@@ -350,6 +350,14 @@
     @media (max-width: 900px){
         .block {
             flex-wrap: wrap;
+        }
+    }
+
+    @media (max-width: 700px){
+        .price {
+            margin: 40px 20%;
+            display: grid;
+            grid-template-columns: 1fr;
         }
     }
 
