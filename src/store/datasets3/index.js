@@ -5,6 +5,7 @@ export default {
             datasets3: {},
             datasets4: {},
             feedback: false,
+            loading: false,
             message: '',
         }
     },
@@ -21,7 +22,10 @@ export default {
         },
         getMessage(state) {
             return state.message;
-        }
+        },
+        getLoading(state) {
+            return state.loading;
+        },
     },
 
     actions: {
@@ -33,6 +37,12 @@ export default {
         },
         addMessage({commit}, mess){
             commit('ADDMESSAGE', mess);
+        },
+        addLoading({commit}){
+            commit('ADDLOADING');
+        },
+        delLoading({commit}){
+            commit('DELLOADING');
         },
         addFeedback({commit}){
             commit('ADDFEEDBACK');
@@ -51,6 +61,12 @@ export default {
         },
         ADDMESSAGE(state, mess) {
             state.message = mess;
+        },
+        ADDLOADING(state) {
+            state.loading = false;
+        },
+        DELLOADING(state) {
+            state.loading = true;
         },
         ADDFEEDBACK(state) {
             state.feedback = true;

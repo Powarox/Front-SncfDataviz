@@ -5,7 +5,7 @@
                     <p><i class="fas fa-times"></i> {{ this.getMessage }}</p>
                 </div>
             </transition>
-        <div v-if="change">
+        <div v-if="change && loading">
             {{ check() }}
         </div>
     </div>
@@ -33,11 +33,15 @@
         },
         computed: {
             ...mapGetters([
-                'getFeedback', 'getMessage',
+                'getFeedback', 'getMessage', 'getLoading',
             ]),
 
-            change(){
+            change() {
                 return this.getFeedback;
+            },
+
+            loading() {
+                return this.getLoading;
             }
         }
     }

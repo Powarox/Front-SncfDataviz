@@ -18,7 +18,7 @@
 
         methods: {
             ...mapActions([
-                'updateDatasets1', 'updateDatasets2',
+                'updateDatasets1', 'updateDatasets2', 'addMessage', 'addFeedback', 'addLoading', 'delLoading'
             ]),
 
             GlobalTrainLate(){
@@ -57,6 +57,9 @@
             },
 
             upgradDatabase(){
+                this.delLoading();
+                this.addMessage('Load ✔');
+                this.addFeedback();
                 this.updateDatasets1(this.datasets1);
                 this.updateDatasets2(this.datasets2);
                 console.log('Requests Api 1 Finished !');
@@ -65,6 +68,10 @@
         },
 
         mounted() {
+            this.addLoading();
+            this.addMessage('Loading data...');
+            this.addFeedback();
+
             axios
                 .get('https://data.sncf.com/api/records/1.0/search/?dataset=regularite-mensuelle-tgv-aqst&q=&rows=-1&sort=date')
                 .then(response => {
