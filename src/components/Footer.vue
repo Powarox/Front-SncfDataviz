@@ -49,10 +49,14 @@
 </template>
 
 <script>
+    import Feedback from './Feedback.vue';
     import { mapActions, mapGetters } from 'vuex';
 
     export default {
         name: 'Footer',
+        components: {
+            Feedback,
+        },
         methods: {
             ...mapActions([
                 'addMessage', 'addFeedback', 'delFeedback',
