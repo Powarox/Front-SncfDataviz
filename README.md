@@ -6,7 +6,7 @@ https://dev-21606393.users.info.unicaen.fr/Dataviz/#/
 
 
 ## Présentation Vidéo
-https://youtu.be/c8sFWOCyZGA
+https://www.youtube.com/watch?v=c8sFWOCyZGA
 
 
 ## Project setup
