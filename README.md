@@ -66,13 +66,13 @@ Composants permettant de créer des graphiques DoughnutChart à partir de donné
 
 ## Views
 ### Home.vue
-![alt text](https://github.com/Powarox2159/Projet-ProgrammationWeb/blob/master/ressources/img/home.png?raw=true)
+![alt text](https://github.com/Powarox2159/Dataviz-Sncf/blob/master/ressources/img/home.png?raw=true)
 
 ### Analytics.vue
-![alt text](https://github.com/Powarox2159/Projet-ProgrammationWeb/blob/master/ressources/img/analytics.png?raw=true)
+![alt text](https://github.com/Powarox2159/Dataviz-Sncf/blob/master/ressources/img/analytics.png?raw=true)
 
 ### Map.vue
-![alt text](https://github.com/Powarox2159/Projet-ProgrammationWeb/blob/master/ressources/img/map.png?raw=true)
+![alt text](https://github.com/Powarox2159/Dataviz-Sncf/blob/master/ressources/img/map.png?raw=true)
 
 ### About.vue
-![alt text](https://github.com/Powarox2159/Projet-ProgrammationWeb/blob/master/ressources/img/about.png?raw=true)
+![alt text](https://github.com/Powarox2159/Dataviz-Sncf/blob/master/ressources/img/about.png?raw=true)
