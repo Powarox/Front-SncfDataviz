@@ -452,16 +452,13 @@
             'larg larg larg larg larg larg box8 box8 box8 box10 box10 box10'
             'larg larg larg larg larg larg box9 box9 box9 box10 box10 box10';
         grid-gap: 20px;
-        background: #FFF;
+        background: var(--main-white-color);
     }
 
     .main .box {
         padding: 10px;
-        /* display: grid; */
-        /* align-items: center; */
-        /* justify-items: center; */
-        background: #FAE2E3;
-        border: 2px solid #FAE2E3;
+        background: var(--main-body-color);
+        border: 2px solid var(--main-body-color);
         border-radius: 10px;
         box-shadow: 0 0 10px #AAA;
     }
@@ -522,7 +519,7 @@
     .main .box .content .stats .stats2 .item i {
         margin-right: 10px;
         padding: 10px 15px;
-        color: #FFF;
+        color: var(--main-white-color);
         background: var(--main-red-color);
         border-radius: 10px;
         font-size: 25px;

@@ -202,11 +202,6 @@
         text-align: justify;
     }
 
-    .right .tab {
-        /* padding-top: 30px; */
-    }
-
-
     table {
         width: 100%;
         border: 1px solid var(--main-grey-color);
