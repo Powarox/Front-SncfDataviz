@@ -1,11 +1,12 @@
 # Dataviz-Sncf
 
 
-## Link vidéo
+## Application
+vuejs.io
+
+
+## Présentation Vidéo
 https://youtu.be/c8sFWOCyZGA
-
-## Link App
-
 
 
 ## Project setup
@@ -30,3 +31,22 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
