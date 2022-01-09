@@ -1,16 +1,17 @@
 # Dataviz-Sncf
 
+## Contributor
+- Powarox2159 : Moriniere Robin 21606393
+- momooz10 : Seck Mohamed Lamine 21711512
+
 
 ## Application
-https://powarox2159.github.io/Dataviz-Sncf/#/
-
-****
-
-https://dev-21606393.users.info.unicaen.fr/Dataviz/#/
+- https://powarox2159.github.io/Dataviz-Sncf/#/
+- https://dev-21606393.users.info.unicaen.fr/Dataviz/#/
 
 
 ## Présentation Vidéo
-https://www.youtube.com/watch?v=c8sFWOCyZGA
+- https://www.youtube.com/watch?v=c8sFWOCyZGA
 
 
 ## Project setup
