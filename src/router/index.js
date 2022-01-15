@@ -3,7 +3,6 @@ import Home from '../views/Home.vue';
 import Analytics from '../views/Analytics.vue';
 import Map from '../views/Map.vue';
 import About from '../views/About.vue';
-
 import NotFound from '../views/NotFound.vue';
 
 const routes = [
