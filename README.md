@@ -1,4 +1,5 @@
 # Dataviz-Sncf
+![](https://tokei.rs/b1/github/Powarox2159/Dataviz-Sncf)
 
 ## Contributor
 - Powarox2159 : Moriniere Robin 21606393
